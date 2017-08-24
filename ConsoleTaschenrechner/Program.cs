@@ -21,9 +21,9 @@ namespace ConsoleTaschenrechner
 
             // Umwandlung der eingegebenen Variablen von Zeichenkette in Gleitkommazahl
 
-            float summandFloat1 = Convert.ToSingle(summand1);
-            float summandFloat2 = Convert.ToSingle(summand2);
-            float summe = summandFloat1 + summandFloat2;
+            double summandDouble1 = Convert.ToDouble(summand1);
+            double summandDouble2 = Convert.ToDouble(summand2);
+            double summe = summandDouble1 + summandDouble2;
 
             Console.WriteLine("Das ist die Summe aus {0} und {1}: {2}", summand1, summand2, summe);
 
