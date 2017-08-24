@@ -23,15 +23,31 @@ namespace TaschenrechnerConsole
 
             double summandDouble1 = Convert.ToDouble(summand1);
             double summandDouble2 = Convert.ToDouble(summand2);
-            double summe = summandDouble1 + summandDouble2;
+
+            // Berechnung ausführen Addition
+
+            double summe = Addiere(summandDouble1, summandDouble2);
+
+            // Ausgabe
 
             Console.WriteLine("Das ist die Summe aus {0} und {1}: {2}", summand1, summand2, summe);
 
             // die Variable summe ist überflüssig, wenn man die Ausgabe wie folgt programmiert:
             //Console.WriteLine("Das ist die Summe aus {0} und {1}: {2}", summand1, summand2, summandDouble1 + summandDouble2); 
 
-            Console.ReadKey();
-
+            WarteAufBenutzereingabe();
          }
+        static void WarteAufBenutzereingabe()
+        {
+            Console.WriteLine();
+            Console.WriteLine("zum Beenden bitte return drücken");
+            Console.ReadLine();
+        }
+        static double Addiere(double ersterSummand, double zweiterSummand)
+        {
+            double summe = ersterSummand + zweiterSummand;
+
+            return summe;
+        }
     }
 }
