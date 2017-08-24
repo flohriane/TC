@@ -2,21 +2,36 @@ User Stories Taschenrechner
 
 User Story Vorlage: Als <Rolle/ Anwendertyp> möchte ich <Ziel/ Wunsch/ Funktion>, um <Nutzen>
 
+Titel: Softwarestruktur
+Story: als Entwickler möchte ich die Software sauber strukturieren, um später einfach weitere Funktionalitäten hinzufügen zu können
+Akzeptanzkriterien: 
+	* Das Single Level oder Abstraction wird eingehalten oder eine Abweichung ist begründet und dokumentiert
+Status:
+	* offen
+
+
+Titel: Subtrahieren
+Story: als Benuter möchte ich 2 Zahlen eingeben, um deren Differenz berechnen zu lassen
+Akzeptanzkriterien: 
+	* Gleitkommazahlen zwischen -10.0 und 100.0 können addiert werden
+Status:
+	* offen
+
+
 Titel: Addieren
 Story: als Benuter möchte ich 2 Zahlen eingeben, um deren Summe berechnen zu lassen
 Akzeptanzkriterien: 
-
-	* Gleitkommazahlen zwischen 0.0 und 10.0 können addiert werden
-
+	* Gleitkommazahlen zwischen -10.0 und 100.0 können addiert werden
 Status:
-
 	* Implementiert
 	* Getestet
 	* Erledigt
 
+
 Titel: Starten
 Story: Als Benutzer möchte ich den Taschenrechner schnell aufrufen können, um mein Resultat schnell zu erhalten
 Akzeptanzkriterien:
-
 	* Die Anwendung wird innerhalb von 2 Sekunden auf einem Rechner gestartet
 	* Die Anwendung läuft auf einem Rechner mit Windows 10
+Status:
+	* offen
