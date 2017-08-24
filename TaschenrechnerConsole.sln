@@ -3,12 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleTaschenrechner", "ConsoleTaschenrechner\ConsoleTaschenrechner.csproj", "{9F29123D-2C23-44C4-97A9-2694585E1A4D}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{805992F9-2B17-4BF1-954C-89F18C4426EA}"
 	ProjectSection(SolutionItems) = preProject
 		UserStory.txt = UserStory.txt
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaschenrechnerConsole", "TaschenrechnerConsole\TaschenrechnerConsole.csproj", "{9F29123D-2C23-44C4-97A9-2694585E1A4D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

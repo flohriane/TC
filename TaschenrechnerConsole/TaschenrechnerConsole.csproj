@@ -7,8 +7,8 @@
     <ProjectGuid>{9F29123D-2C23-44C4-97A9-2694585E1A4D}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ConsoleTaschenrechner</RootNamespace>
-    <AssemblyName>ConsoleTaschenrechner</AssemblyName>
+    <RootNamespace>TaschenrechnerConsole</RootNamespace>
+    <AssemblyName>TaschenrechnerConsole</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
