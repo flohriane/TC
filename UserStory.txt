@@ -5,9 +5,10 @@ User Story Vorlage: Als <Rolle/ Anwendertyp> möchte ich <Ziel/ Wunsch/ Funktion>
 Titel: Softwarestruktur
 Story: als Entwickler möchte ich die Software sauber strukturieren, um später einfach weitere Funktionalitäten hinzufügen zu können
 Akzeptanzkriterien: 
-	* Das Single Level oder Abstraction wird eingehalten oder eine Abweichung ist begründet und dokumentiert
+	* Das Single Level of Abstraction wird eingehalten oder eine Abweichung ist begründet und dokumentiert
 Status:
-	* offen
+	* umgesetzt
+	* erledigt
 
 
 Titel: Subtrahieren
