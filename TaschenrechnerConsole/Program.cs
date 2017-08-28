@@ -47,48 +47,42 @@ namespace TaschenrechnerConsole
                 ersteZahlAlsDouble = Convert.ToDouble(ersteZahlAlsString);
                 zweiteZahlAlsDouble = Convert.ToDouble(zweiteZahlAlsString);
 
-                if (operation == "+")
+                switch (operation)
                 {
                     // Berechnung ausführen Addition
                     // die Werte in ersteZahlAlsDouble und zweiteZahlAlsDouble werden an die Methode Addieren übergeben
                     // nach Ausführen der Methode wird der ermittelte Wert an die Variable resultat übergeben
-                    resultat = Addiere(ersteZahlAlsDouble, zweiteZahlAlsDouble);
+                    case "+":
+                        resultat = Addiere(ersteZahlAlsDouble, zweiteZahlAlsDouble);
+                        break;
+
+                    case "-":
+                        resultat = Subtrahiere(ersteZahlAlsDouble, zweiteZahlAlsDouble);
+                        break;
+
+                    case "*":
+                        resultat = Multipliziere(ersteZahlAlsDouble, zweiteZahlAlsDouble);
+                        break;
+
+                    case "/":
+                        if (zweiteZahlAlsDouble == 0)
+                        {
+                            Console.WriteLine("Division durch 0 nicht möglich");
+                            resultat = 0;
+                        }
+                        else
+                        {
+                            resultat = Dividiere(ersteZahlAlsDouble, zweiteZahlAlsDouble);
+                        }
+                        break;
+
+                    default:
+                        // zur Sicherheit wird ein unerwarteter Fehler abgefangen
+                        Console.WriteLine("unerwarteter Fehler bei Eingabe Operator");
+                        break;
                 }
-                else if (operation == "-")
-                {
-                    // Berechnung ausführen Subrtaktion
-                    // die Werte in ersteZahlAlsDouble und zweiteZahlAlsDouble werden an die Methode Subtrahieren übergeben
-                    // nach Ausführen der Methode wird der ermittelte Wert an die Variable resultat übergeben
-                    resultat = Subtrahiere(ersteZahlAlsDouble, zweiteZahlAlsDouble);
-                }
-                else if (operation == "*")
-                {
-                    // Berechnung ausführen Multiplikation
-                    // die Werte in ersteZahlAlsDouble und zweiteZahlAlsDouble werden an die Methode Multiplizieren übergeben
-                    // nach Ausführen der Methode wird der ermittelte Wert an die Variable resultat übergeben
-                    resultat = Multipliziere(ersteZahlAlsDouble, zweiteZahlAlsDouble);
-                }
-                else if (operation == "/")
-                {
-                    // Berechnung ausführen Division
-                    // die Werte in ersteZahlAlsDouble und zweiteZahlAlsDouble werden an die Methode Dividieren übergeben
-                    // nach Ausführen der Methode wird der ermittelte Wert an die Variable resultat übergeben
-                    if (zweiteZahlAlsDouble == 0)
-                    {
-                        Console.WriteLine("Division durch 0 nicht möglich");
-                        resultat = 0;
-                    }
-                    else
-                    {
-                        resultat = Dividiere(ersteZahlAlsDouble, zweiteZahlAlsDouble);
-                    }
-                }
-                else
-                {
-                    // zur Sicherheit wird ein unerwarteter Fehler abgefangen
-                    Console.WriteLine("unerwarteter Fehler bei Eingabe Operator");
-                }
-                // Ausgabe des Resultats aus Addition oder Subtraktion
+
+                // Ausgabe des Resultats aus der Berechnung
                 Console.WriteLine("Das ist das Resultat {0}", resultat);
             }
             // Programm beenden
