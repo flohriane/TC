@@ -23,22 +23,28 @@ namespace TaschenrechnerConsole
         static void Main(string[] args)
         {
             double resultat = 0;
+            double ersteZahlAlsDouble = 0;
+            double zweiteZahlAlsDouble = 0;
+
+            // Eingabe der zwei Zahlen, die verarbeitet werden sollen
+            string ersteZahlAlsString = HoleBenutzerEingabe("Bitte gib die 1. Zahl zwischen -10,0 und 100,0 ein");
+            string zweiteZahlAlsString = HoleBenutzerEingabe("Bitte gib die 2. Zahl zwischen -10,0 und 100,0 ein");
+
+            // Eingabe des Operators
             string operation = HoleBenutzerEingabe("Bitte gib an, welche Operation du durchführen möchtest: +  -  *  /  sind möglich");
 
-            if (operation != "+" && operation != "-" && operation != "*" && operation != "/")
-            {
-                // Eingabefehler bei Operator wird abgefangen
-                Console.WriteLine("falsche Eingabe bei Operator");
-                Console.WriteLine("");
-            }
-            else
-            {
-                // Berechnungen durchführen
-                resultat = Berechne(operation);
+            // Umwandlung der eingegebenen Variablen von Zeichenkette in Gleitkommazahl
+            // TODO: Auslagern in Methode, wenn Struktur umfangreicher wird
+            ersteZahlAlsDouble = Convert.ToDouble(ersteZahlAlsString);
+            zweiteZahlAlsDouble = Convert.ToDouble(zweiteZahlAlsString);
 
-                // Ausgabe vom Ergebnis aus der Berechnung
-                Console.WriteLine("Das ist das Resultat {0}", resultat);
-            }
+            // Berechnungen durchführen
+            resultat = Berechne(ersteZahlAlsDouble, zweiteZahlAlsDouble, operation);
+
+            // Ausgabe vom Ergebnis aus der Berechnung
+            //Console.WriteLine("Das ist das Resultat {0}", resultat);
+            GebeResultatAus(operation, resultat);
+
             // Programm beenden
             HoleBenutzerEingabe("zum Beenden bitte <return> drücken");
          }
@@ -82,20 +88,9 @@ namespace TaschenrechnerConsole
         }
 
         // Methode Berechnungen je nach Operator
-        static double Berechne(string operation)
+        static double Berechne(double ersteZahlAlsDouble, double zweiteZahlAlsDouble, string operation)
         {
             double resultat = 0;
-            double ersteZahlAlsDouble = 0;
-            double zweiteZahlAlsDouble = 0;
-
-            // Eingabe der zwei Zahlen, die verarbeitet werden sollen
-            string ersteZahlAlsString = HoleBenutzerEingabe("Bitte gib die 1. Zahl zwischen -10,0 und 100,0 ein");
-            string zweiteZahlAlsString = HoleBenutzerEingabe("Bitte gib die 2. Zahl zwischen -10,0 und 100,0 ein");
-
-            // Umwandlung der eingegebenen Variablen von Zeichenkette in Gleitkommazahl
-            // TODO: Auslagern in Methode, wenn Struktur umfangreicher wird
-            ersteZahlAlsDouble = Convert.ToDouble(ersteZahlAlsString);
-            zweiteZahlAlsDouble = Convert.ToDouble(zweiteZahlAlsString);
 
             switch (operation)
             {
@@ -130,11 +125,47 @@ namespace TaschenrechnerConsole
                     break;
 
                 default:
-                    // zur Sicherheit wird ein unerwarteter Fehler abgefangen
-                    Console.WriteLine("unerwarteter Fehler bei Eingabe Operator");
+                    // Eingabefehler wird abgefangen
+                    GebeEingabeFehlerAus("für Operator", operation);
                     break;
             }
             return resultat;
         }
+
+        // Methode Ausgabe Resultat
+        static void GebeResultatAus(string operation, double resultat)
+        {
+            switch (operation)
+            {
+                case "+":
+                    Console.WriteLine("Die Summe beträgt: {0}", resultat);
+                    break;
+
+                case "-":
+                    Console.WriteLine("Die Differenz beträgt: {0}", resultat);
+                    break;
+
+                case "*":
+                    Console.WriteLine("Das Produkt beträgt: {0}", resultat);
+                    break;
+
+                case "/":
+                    Console.WriteLine("Der Quotient beträgt: {0}", resultat);
+                    break;
+
+                default:
+                    Console.WriteLine("unerwarteter Fehler");
+                    break;
+            }
+            Console.WriteLine();
+        }
+
+        // Methode Ausgabe Eingabefehler
+        static void GebeEingabeFehlerAus(string fehlerquelle, string eingabe)
+        {
+            Console.WriteLine("Dies ist eine falsche Eingabe {0}: {1}", fehlerquelle, eingabe);
+            Console.WriteLine();
+        }
     }
 }
+
