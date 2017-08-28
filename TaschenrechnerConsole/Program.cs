@@ -22,24 +22,52 @@ namespace TaschenrechnerConsole
   
         static void Main(string[] args)
         {
+            double resultat = 0;
+            double ersteZahlAlsDouble = 0;
+            double zweiteZahlAlsDouble = 0;
+
             // User Story "Addieren": Als Anwender möchte ich 2 Gleitkommazahlen zwischen 0,0 und 10,0 eingeben und sie addieren
+            // Eingabe, welche Operation durchgeführt werden soll (+ oder - sind möglich)
+            string operation = HoleBenutzerEingabe("Bitte gib an, welche Operation du durchführen möchtest: + oder -");
 
-            string ersteZahlAlsString = HoleBenutzerEingabe("Bitte gib die 1. Zahl zwischen -10,0 und 100,0 ein");
-            string zweiteZahlAlsString = HoleBenutzerEingabe("Bitte gib die 2. Zahl zwischen -10,0 und 100,0 ein");
+            if (operation != "+" && operation != "-")
+            {
+                // Eingabefehler
+                Console.WriteLine("falsche Eingabe bei Operator");
+                Console.WriteLine("");
+            }
+            else
+            {
+                // Eingabe der zwei Zahlen, die verarbeitet werden sollen
+                string ersteZahlAlsString = HoleBenutzerEingabe("Bitte gib die 1. Zahl zwischen -10,0 und 100,0 ein");
+                string zweiteZahlAlsString = HoleBenutzerEingabe("Bitte gib die 2. Zahl zwischen -10,0 und 100,0 ein");
 
-            // Umwandlung der eingegebenen Variablen von Zeichenkette in Gleitkommazahl
-            // TODO: Auslagern in Methode, wenn Struktur umfangreicher wird
-            double ersteZahlAlsDouble = Convert.ToDouble(ersteZahlAlsString);
-            double zweiteZahlAlsDouble = Convert.ToDouble(zweiteZahlAlsString);
+                // Umwandlung der eingegebenen Variablen von Zeichenkette in Gleitkommazahl
+                // TODO: Auslagern in Methode, wenn Struktur umfangreicher wird
+                ersteZahlAlsDouble = Convert.ToDouble(ersteZahlAlsString);
+                zweiteZahlAlsDouble = Convert.ToDouble(zweiteZahlAlsString);
 
-            // Berechnung ausführen Addition
-            // die Werte in ersteZahlAlsDouble und zweiteZahlAlsDouble werden an die Methode Addieren übergeben
-            // nach Ausführen der Methode wird der ermittelte Wert an die Variable summe übergeben
-            double summe = Addiere(ersteZahlAlsDouble, zweiteZahlAlsDouble); 
-
-            // Ausgabe
-            Console.WriteLine("Das ist die Summe aus {0} und {1}: {2}", ersteZahlAlsString, zweiteZahlAlsString, summe);
-
+                if (operation == "+")
+                {
+                    // Berechnung ausführen Addition
+                    // die Werte in ersteZahlAlsDouble und zweiteZahlAlsDouble werden an die Methode Addieren übergeben
+                    // nach Ausführen der Methode wird der ermittelte Wert an die Variable summe übergeben
+                    resultat = Addiere(ersteZahlAlsDouble, zweiteZahlAlsDouble);
+                }
+                else if (operation == "-")
+                {
+                    // Berechnung ausführen Subrtaktion
+                    // die Werte in ersteZahlAlsDouble und zweiteZahlAlsDouble werden an die Methode Addieren übergeben
+                    // nach Ausführen der Methode wird der ermittelte Wert an die Variable summe übergeben
+                    resultat = Subtrahiere(ersteZahlAlsDouble, zweiteZahlAlsDouble);
+                }
+                else
+                {
+                    Console.WriteLine("unerwarteter Fehler bei Eingabe Operator");
+                }
+                // Ausgabe
+                Console.WriteLine("Das ist das Resultat {0}", resultat);
+            }
             // Programm beenden
             HoleBenutzerEingabe("zum Beenden bitte <return> drücken");
          }
@@ -58,7 +86,6 @@ namespace TaschenrechnerConsole
         static double Addiere(double ersterSummand, double zweiterSummand) // übernimmt die Werte aus ersteZahlAlsDouble und zweiteZahlAlsDouble
         {
             double summe = ersterSummand + zweiterSummand;  // summe ist nur innerhalb der Methode Addieren gültig, könnte auch anders heißen
-
             return summe; // summe wird als Ergebnis an summe zurückgegeben
         }
 
@@ -66,7 +93,6 @@ namespace TaschenrechnerConsole
         static double Subtrahiere(double minuend, double subtrahend)
         {
             double differenz = minuend - subtrahend;
-
             return differenz;
         }
     }
