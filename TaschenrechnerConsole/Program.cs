@@ -28,11 +28,11 @@ namespace TaschenrechnerConsole
 
             // User Story "Addieren": Als Anwender möchte ich 2 Gleitkommazahlen zwischen 0,0 und 10,0 eingeben und sie addieren
             // Eingabe, welche Operation durchgeführt werden soll (+ oder - sind möglich)
-            string operation = HoleBenutzerEingabe("Bitte gib an, welche Operation du durchführen möchtest: + oder -");
+            string operation = HoleBenutzerEingabe("Bitte gib an, welche Operation du durchführen möchtest: +  -  *  /  sind möglich");
 
-            if (operation != "+" && operation != "-")
+            if (operation != "+" && operation != "-" && operation != "*" && operation != "/")
             {
-                // Eingabefehler
+                // Eingabefehler bei Operator wird abgefanden
                 Console.WriteLine("falsche Eingabe bei Operator");
                 Console.WriteLine("");
             }
@@ -51,21 +51,44 @@ namespace TaschenrechnerConsole
                 {
                     // Berechnung ausführen Addition
                     // die Werte in ersteZahlAlsDouble und zweiteZahlAlsDouble werden an die Methode Addieren übergeben
-                    // nach Ausführen der Methode wird der ermittelte Wert an die Variable summe übergeben
+                    // nach Ausführen der Methode wird der ermittelte Wert an die Variable resultat übergeben
                     resultat = Addiere(ersteZahlAlsDouble, zweiteZahlAlsDouble);
                 }
                 else if (operation == "-")
                 {
                     // Berechnung ausführen Subrtaktion
-                    // die Werte in ersteZahlAlsDouble und zweiteZahlAlsDouble werden an die Methode Addieren übergeben
-                    // nach Ausführen der Methode wird der ermittelte Wert an die Variable summe übergeben
+                    // die Werte in ersteZahlAlsDouble und zweiteZahlAlsDouble werden an die Methode Subtrahieren übergeben
+                    // nach Ausführen der Methode wird der ermittelte Wert an die Variable resultat übergeben
                     resultat = Subtrahiere(ersteZahlAlsDouble, zweiteZahlAlsDouble);
+                }
+                else if (operation == "*")
+                {
+                    // Berechnung ausführen Multiplikation
+                    // die Werte in ersteZahlAlsDouble und zweiteZahlAlsDouble werden an die Methode Multiplizieren übergeben
+                    // nach Ausführen der Methode wird der ermittelte Wert an die Variable resultat übergeben
+                    resultat = Multipliziere(ersteZahlAlsDouble, zweiteZahlAlsDouble);
+                }
+                else if (operation == "/")
+                {
+                    // Berechnung ausführen Division
+                    // die Werte in ersteZahlAlsDouble und zweiteZahlAlsDouble werden an die Methode Dividieren übergeben
+                    // nach Ausführen der Methode wird der ermittelte Wert an die Variable resultat übergeben
+                    if (zweiteZahlAlsDouble == 0)
+                    {
+                        Console.WriteLine("Division durch 0 nicht möglich");
+                        resultat = 0;
+                    }
+                    else
+                    {
+                        resultat = Dividiere(ersteZahlAlsDouble, zweiteZahlAlsDouble);
+                    }
                 }
                 else
                 {
+                    // zur Sicherheit wird ein unerwarteter Fehler abgefangen
                     Console.WriteLine("unerwarteter Fehler bei Eingabe Operator");
                 }
-                // Ausgabe
+                // Ausgabe des Resultats aus Addition oder Subtraktion
                 Console.WriteLine("Das ist das Resultat {0}", resultat);
             }
             // Programm beenden
@@ -94,6 +117,20 @@ namespace TaschenrechnerConsole
         {
             double differenz = minuend - subtrahend;
             return differenz;
+        }
+
+        // Methode Multipliziere für 2 Werte
+        static double Multipliziere(double ersterfaktor, double zweiterfaktor)
+        {
+            double produkt = ersterfaktor * zweiterfaktor;
+            return produkt;
+        }
+
+        // Methode Dividiere für 2 Werte
+        static double Dividiere(double dividend, double divisor)
+        {
+            double quotient = dividend / divisor;
+            return quotient;
         }
     }
 }
