@@ -23,66 +23,20 @@ namespace TaschenrechnerConsole
         static void Main(string[] args)
         {
             double resultat = 0;
-            double ersteZahlAlsDouble = 0;
-            double zweiteZahlAlsDouble = 0;
-
-            // User Story "Addieren": Als Anwender möchte ich 2 Gleitkommazahlen zwischen 0,0 und 10,0 eingeben und sie addieren
-            // Eingabe, welche Operation durchgeführt werden soll (+ oder - sind möglich)
             string operation = HoleBenutzerEingabe("Bitte gib an, welche Operation du durchführen möchtest: +  -  *  /  sind möglich");
 
             if (operation != "+" && operation != "-" && operation != "*" && operation != "/")
             {
-                // Eingabefehler bei Operator wird abgefanden
+                // Eingabefehler bei Operator wird abgefangen
                 Console.WriteLine("falsche Eingabe bei Operator");
                 Console.WriteLine("");
             }
             else
             {
-                // Eingabe der zwei Zahlen, die verarbeitet werden sollen
-                string ersteZahlAlsString = HoleBenutzerEingabe("Bitte gib die 1. Zahl zwischen -10,0 und 100,0 ein");
-                string zweiteZahlAlsString = HoleBenutzerEingabe("Bitte gib die 2. Zahl zwischen -10,0 und 100,0 ein");
+                // Berechnungen durchführen
+                resultat = Berechne(operation);
 
-                // Umwandlung der eingegebenen Variablen von Zeichenkette in Gleitkommazahl
-                // TODO: Auslagern in Methode, wenn Struktur umfangreicher wird
-                ersteZahlAlsDouble = Convert.ToDouble(ersteZahlAlsString);
-                zweiteZahlAlsDouble = Convert.ToDouble(zweiteZahlAlsString);
-
-                switch (operation)
-                {
-                    // Berechnung ausführen Addition
-                    // die Werte in ersteZahlAlsDouble und zweiteZahlAlsDouble werden an die Methode Addieren übergeben
-                    // nach Ausführen der Methode wird der ermittelte Wert an die Variable resultat übergeben
-                    case "+":
-                        resultat = Addiere(ersteZahlAlsDouble, zweiteZahlAlsDouble);
-                        break;
-
-                    case "-":
-                        resultat = Subtrahiere(ersteZahlAlsDouble, zweiteZahlAlsDouble);
-                        break;
-
-                    case "*":
-                        resultat = Multipliziere(ersteZahlAlsDouble, zweiteZahlAlsDouble);
-                        break;
-
-                    case "/":
-                        if (zweiteZahlAlsDouble == 0)
-                        {
-                            Console.WriteLine("Division durch 0 nicht möglich");
-                            resultat = 0;
-                        }
-                        else
-                        {
-                            resultat = Dividiere(ersteZahlAlsDouble, zweiteZahlAlsDouble);
-                        }
-                        break;
-
-                    default:
-                        // zur Sicherheit wird ein unerwarteter Fehler abgefangen
-                        Console.WriteLine("unerwarteter Fehler bei Eingabe Operator");
-                        break;
-                }
-
-                // Ausgabe des Resultats aus der Berechnung
+                // Ausgabe vom Ergebnis aus der Berechnung
                 Console.WriteLine("Das ist das Resultat {0}", resultat);
             }
             // Programm beenden
@@ -125,6 +79,62 @@ namespace TaschenrechnerConsole
         {
             double quotient = dividend / divisor;
             return quotient;
+        }
+
+        // Methode Berechnungen je nach Operator
+        static double Berechne(string operation)
+        {
+            double resultat = 0;
+            double ersteZahlAlsDouble = 0;
+            double zweiteZahlAlsDouble = 0;
+
+            // Eingabe der zwei Zahlen, die verarbeitet werden sollen
+            string ersteZahlAlsString = HoleBenutzerEingabe("Bitte gib die 1. Zahl zwischen -10,0 und 100,0 ein");
+            string zweiteZahlAlsString = HoleBenutzerEingabe("Bitte gib die 2. Zahl zwischen -10,0 und 100,0 ein");
+
+            // Umwandlung der eingegebenen Variablen von Zeichenkette in Gleitkommazahl
+            // TODO: Auslagern in Methode, wenn Struktur umfangreicher wird
+            ersteZahlAlsDouble = Convert.ToDouble(ersteZahlAlsString);
+            zweiteZahlAlsDouble = Convert.ToDouble(zweiteZahlAlsString);
+
+            switch (operation)
+            {
+                // Berechnung ausführen Addition
+                // die Werte in ersteZahlAlsDouble und zweiteZahlAlsDouble werden an die Methode Addieren übergeben
+                // nach Ausführen der Methode wird der ermittelte Wert an die Variable resultat übergeben
+                case "+":
+                    resultat = Addiere(ersteZahlAlsDouble, zweiteZahlAlsDouble);
+                    break;
+
+                // Berechnung ausführen Subtraktion
+                case "-":
+                    resultat = Subtrahiere(ersteZahlAlsDouble, zweiteZahlAlsDouble);
+                    break;
+
+                // Berechnung ausführen Multiplikation
+                case "*":
+                    resultat = Multipliziere(ersteZahlAlsDouble, zweiteZahlAlsDouble);
+                    break;
+
+                // Berechnung ausführen Division
+                case "/":
+                    if (zweiteZahlAlsDouble == 0)
+                    {
+                        Console.WriteLine("Division durch 0 nicht möglich");
+                        resultat = 0;
+                    }
+                    else
+                    {
+                        resultat = Dividiere(ersteZahlAlsDouble, zweiteZahlAlsDouble);
+                    }
+                    break;
+
+                default:
+                    // zur Sicherheit wird ein unerwarteter Fehler abgefangen
+                    Console.WriteLine("unerwarteter Fehler bei Eingabe Operator");
+                    break;
+            }
+            return resultat;
         }
     }
 }

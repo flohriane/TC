@@ -10,6 +10,22 @@ Status:
 	* umgesetzt
 	* erledigt
 
+Titel: Dividieren
+Story: als Benutzer möchte ich eine Zahlen durch eine zweite dividieren
+Akzeptanzkriterien:
+	* Gleitkommazahlen zwischen -10 und 100 können multipliziert werden
+	* Divsion durch 0 muss verhindert werden
+Status:
+	* umgesetzt
+	* erledigt
+
+Titel: Multiplizieren
+Story: als Benutzer möchte ich 2 Zahlen miteinander multiplizieren
+Akzeptanzkriterien:
+	* Gleitkommazahlen zwischen -10 und 100 können multipliziert werden
+Status:
+	* umgesetzt
+	* erledigt
 
 Titel: Subtrahieren
 Story: als Benuter möchte ich 2 Zahlen eingeben, um deren Differenz berechnen zu lassen
@@ -17,7 +33,6 @@ Akzeptanzkriterien:
 	* Gleitkommazahlen zwischen -10.0 und 100.0 können addiert werden
 Status:
 	* offen
-
 
 Titel: Addieren
 Story: als Benuter möchte ich 2 Zahlen eingeben, um deren Summe berechnen zu lassen
@@ -27,7 +42,6 @@ Status:
 	* Implementiert
 	* Getestet
 	* Erledigt
-
 
 Titel: Starten
 Story: Als Benutzer möchte ich den Taschenrechner schnell aufrufen können, um mein Resultat schnell zu erhalten
