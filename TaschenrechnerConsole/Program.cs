@@ -38,16 +38,24 @@ namespace TaschenrechnerConsole
             ersteZahlAlsDouble = Convert.ToDouble(ersteZahlAlsString);
             zweiteZahlAlsDouble = Convert.ToDouble(zweiteZahlAlsString);
 
-            // Berechnungen durchführen
-            resultat = Berechne(ersteZahlAlsDouble, zweiteZahlAlsDouble, operation);
+            // Division durch 0 ausschließen
+            if (operation == "/" && zweiteZahlAlsDouble == 0)
+            {
+                // Fehlermeldung ausgeben
+                GebeEingabeFehlerAus("für 2. Zahl", "Division durch 0 ist nicht möglich");
+            }
+            else
+            {
+                // Berechnungen durchführen
+                resultat = Berechne(ersteZahlAlsDouble, zweiteZahlAlsDouble, operation);
 
-            // Ausgabe vom Ergebnis aus der Berechnung
-            //Console.WriteLine("Das ist das Resultat {0}", resultat);
-            GebeResultatAus(operation, resultat);
-
+                // Ausgabe vom Ergebnis aus der Berechnung
+                //Console.WriteLine("Das ist das Resultat {0}", resultat);
+                GebeResultatAus(operation, resultat);
+            }
             // Programm beenden
             HoleBenutzerEingabe("zum Beenden bitte <return> drücken");
-         }
+        }
 
         // Methode zum Einlesen von Zeichenkette
         static string HoleBenutzerEingabe(string ausgabeText)
@@ -113,15 +121,7 @@ namespace TaschenrechnerConsole
 
                 // Berechnung ausführen Division
                 case "/":
-                    if (zweiteZahlAlsDouble == 0)
-                    {
-                        Console.WriteLine("Division durch 0 nicht möglich");
-                        resultat = 0;
-                    }
-                    else
-                    {
-                        resultat = Dividiere(ersteZahlAlsDouble, zweiteZahlAlsDouble);
-                    }
+                    resultat = Dividiere(ersteZahlAlsDouble, zweiteZahlAlsDouble);
                     break;
 
                 default:
