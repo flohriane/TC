@@ -2,6 +2,16 @@ User Stories Taschenrechner
 
 User Story Vorlage: Als <Rolle/ Anwendertyp> möchte ich <Ziel/ Wunsch/ Funktion>, um <Nutzen>
 
+Titel: ObjektOrientierung
+Story: Als Entwickler möchte ich die Anwednung objektorientiert entwickeln, um später einfach weitere Funktionalitäten hinzufügen zu können
+Akzeptanzkriterien:
+	* Die Aufteilung der Funktionalitäten auf Klassen folgt dem Prinzip Separation of Concerns (SoC)
+	* Bei der Erstellung von Klassen und Methoden wird das Prinzip Don't Repeat Yourself (DRY) eingehalten
+Hinweis:
+	* Diese Story ist eine Erweiterung zur Story "Softwarestruktur"
+Status:
+	* offen
+
 Titel: Softwarestruktur
 Story: als Entwickler möchte ich die Software sauber strukturieren, um später einfach weitere Funktionalitäten hinzufügen zu können
 Akzeptanzkriterien: 

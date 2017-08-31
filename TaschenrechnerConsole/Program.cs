@@ -72,6 +72,9 @@ namespace TaschenrechnerConsole
         {
             double summe = ersterSummand + zweiterSummand;  // summe ist nur innerhalb der Methode Addieren gültig, könnte auch anders heißen
             return summe; // summe wird als Ergebnis an summe zurückgegeben
+
+            // oder kürzere Variante
+            // return ersterSummand + zweiterSummand;
         }
 
         // Methode Subtrahiere für 2 Werte
@@ -79,6 +82,9 @@ namespace TaschenrechnerConsole
         {
             double differenz = minuend - subtrahend;
             return differenz;
+
+            // oder kürzere Variante
+            // return minuedn - subtrahend;
         }
 
         // Methode Multipliziere für 2 Werte
@@ -86,6 +92,9 @@ namespace TaschenrechnerConsole
         {
             double produkt = ersterfaktor * zweiterfaktor;
             return produkt;
+
+            // oder kürzere Variante
+            // return ersterfaktor * zweiterfaktor;
         }
 
         // Methode Dividiere für 2 Werte
@@ -93,6 +102,9 @@ namespace TaschenrechnerConsole
         {
             double quotient = dividend / divisor;
             return quotient;
+
+            // oder kürzere Variante
+            // return dividend / divisor;
         }
 
         // Methode Berechnungen je nach Operator
@@ -125,8 +137,7 @@ namespace TaschenrechnerConsole
                     break;
 
                 default:
-                    // Eingabefehler wird abgefangen
-                    GebeEingabeFehlerAus("für Operator", operation);
+                    resultat = 0;
                     break;
             }
             return resultat;
@@ -154,7 +165,8 @@ namespace TaschenrechnerConsole
                     break;
 
                 default:
-                    Console.WriteLine("unerwarteter Fehler");
+                    // Eingabefehler wird abgefangen
+                    GebeEingabeFehlerAus("für Operator", operation);
                     break;
             }
             Console.WriteLine();
