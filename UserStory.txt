@@ -2,8 +2,25 @@ User Stories Taschenrechner
 
 User Story Vorlage: Als <Rolle/ Anwendertyp> möchte ich <Ziel/ Wunsch/ Funktion>, um <Nutzen>
 
-Titel: ObjektOrientierung
-Story: Als Entwickler möchte ich die Anwednung objektorientiert entwickeln, um später einfach weitere Funktionalitäten hinzufügen zu können
+Titel: Beenden
+Story: Als Benutzer möchte ich "Fertig" anstelle einer weiteren Zahl eingeben, um den Taschenrechner zu beenden
+Akzeptanzkriterien:
+	* Taschenrechner wird beendet, sobal "Fertig" (in genau dieser Schreibweise) eingegeben wird
+	* es gibt einen entsprechenden Hinweis, dass der Benutzer weiß mit welchem Kommando er der Taschenrechner beenden kann
+Status: 
+	* offen
+
+Titel: Fortlaufende Berechnung
+Story: Als Benutzer möchte ich eine weitere Zahl eingeben, um die vorherige Operation nochmals auszuführen mit den vorherigen Resultat
+Akzeptanzkriterien:
+	* Gleitkommanzahlen zwischen -10.0 und 100.0 können eingegeben werden
+	* die Operation aus der vorherigen Berechnung wird nochmals verwendet
+	* das neue Resultat wird ausgegeben ohne weitere Interaktion mit dem Benutzer
+Status:
+	* offen
+
+Titel: Objektorientierung
+Story: Als Entwickler möchte ich die Anwendnung objektorientiert entwickeln, um später einfach weitere Funktionalitäten hinzufügen zu können
 Akzeptanzkriterien:
 	* Die Aufteilung der Funktionalitäten auf Klassen folgt dem Prinzip Separation of Concerns (SoC)
 	* Bei der Erstellung von Klassen und Methoden wird das Prinzip Don't Repeat Yourself (DRY) eingehalten
