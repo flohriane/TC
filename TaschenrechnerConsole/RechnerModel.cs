@@ -8,39 +8,47 @@ namespace TaschenrechnerConsole
 {
     class RechnerModel
     {
-        // Methode Berechnungen je nach Operator
-        public double Berechne(double ersteZahlAlsDouble, double zweiteZahlAlsDouble, string operation)
+        // Property (Eigenschaft) zur Übergabe des Resultats
+        // kann von außen nicht verändert werden - private set
+        public double Resultat { get; private set; }
+
+        // Konstruktor, der die Eigenschaft Resultat initialisiert
+        public RechnerModel()
         {
-            double resultat = 0;
+            Resultat = 0;
+        }
+
+        // Methode Berechnungen je nach Operator
+        public void Berechne(double ersteZahlAlsDouble, double zweiteZahlAlsDouble, string operation)
+        {
             switch (operation)
             {
                 // Berechnung ausführen Addition
                 // die Werte in ersteZahlAlsDouble und zweiteZahlAlsDouble werden an die Methode Addieren übergeben
                 // nach Ausführen der Methode wird der ermittelte Wert an die Variable resultat übergeben
                 case "+":
-                    resultat = Addiere(ersteZahlAlsDouble, zweiteZahlAlsDouble);
+                    Resultat = Addiere(ersteZahlAlsDouble, zweiteZahlAlsDouble);
                     break;
 
                 // Berechnung ausführen Subtraktion
                 case "-":
-                    resultat = Subtrahiere(ersteZahlAlsDouble, zweiteZahlAlsDouble);
+                    Resultat = Subtrahiere(ersteZahlAlsDouble, zweiteZahlAlsDouble);
                     break;
 
                 // Berechnung ausführen Multiplikation
                 case "*":
-                    resultat = Multipliziere(ersteZahlAlsDouble, zweiteZahlAlsDouble);
+                    Resultat = Multipliziere(ersteZahlAlsDouble, zweiteZahlAlsDouble);
                     break;
 
                 // Berechnung ausführen Division
                 case "/":
-                    resultat = Dividiere(ersteZahlAlsDouble, zweiteZahlAlsDouble);
+                    Resultat = Dividiere(ersteZahlAlsDouble, zweiteZahlAlsDouble);
                     break;
 
                 default:
-                    resultat = 0;
+                    Resultat = 0;
                     break;
             }
-            return resultat;
         }
 
         // Methode Addiere für 2 Summanden

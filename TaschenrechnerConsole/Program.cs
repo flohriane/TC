@@ -22,7 +22,6 @@ namespace TaschenrechnerConsole
   
         static void Main(string[] args)
         {
-            double resultat = 0;
             double ersteZahlAlsDouble = 0;
             double zweiteZahlAlsDouble = 0;
 
@@ -48,11 +47,11 @@ namespace TaschenrechnerConsole
             {
                 // Berechnungen durchführen
                 RechnerModel model = new RechnerModel();
-                resultat = model.Berechne(ersteZahlAlsDouble, zweiteZahlAlsDouble, operation);
+                model.Berechne(ersteZahlAlsDouble, zweiteZahlAlsDouble, operation);
 
                 // Ausgabe vom Ergebnis aus der Berechnung
                 //Console.WriteLine("Das ist das Resultat {0}", resultat);
-                GebeResultatAus(operation, resultat);
+                GebeResultatAus(operation, model.Resultat);
             }
             // Programm beenden
             HoleBenutzerEingabe("zum Beenden bitte <return> drücken");
