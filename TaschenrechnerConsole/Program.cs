@@ -22,26 +22,38 @@ namespace TaschenrechnerConsole
   
         static void Main(string[] args)
         {
+            // lokale Variablen anlegen
             double ersteZahlAlsDouble = 0;
             double zweiteZahlAlsDouble = 0;
+            string operation = "";
 
-            // Eingabe der zwei Zahlen, die verarbeitet werden sollen
-            string ersteZahlAlsString = HoleBenutzerEingabe("Bitte gib die 1. Zahl zwischen -10,0 und 100,0 ein");
-            string zweiteZahlAlsString = HoleBenutzerEingabe("Bitte gib die 2. Zahl zwischen -10,0 und 100,0 ein");
+            // Objekt eingabefehler anlegen
+            ConsoleView eingabefehler = new ConsoleView();
 
-            // Eingabe des Operators
-            string operation = HoleBenutzerEingabe("Bitte gib an, welche Operation du durchführen möchtest: +  -  *  /  sind möglich");
+            // Objekt eingabe anlegen
+            ConsoleView eingabe = new ConsoleView();
 
+            // Eingabe der Werte und des Operators zur Berechnung
             // Umwandlung der eingegebenen Variablen von Zeichenkette in Gleitkommazahl
-            // TODO: Auslagern in Methode, wenn Struktur umfangreicher wird
-            ersteZahlAlsDouble = Convert.ToDouble(ersteZahlAlsString);
-            zweiteZahlAlsDouble = Convert.ToDouble(zweiteZahlAlsString);
+            // TODO: Auslagern der Umwandlung String in Double in separater Methode, wenn Struktur umfangreicher wird
+
+            // 1. Wert
+            eingabe.HoleBenutzerEingabe("Bitte gib die 1. Zahl zwischen -10,0 und 100,0 ein");
+            ersteZahlAlsDouble = Convert.ToDouble(eingabe.WertAlsString);
+
+            // 2. Wert
+            eingabe.HoleBenutzerEingabe("Bitte gib die 2. Zahl zwischen -10,0 und 100,0 ein");
+            zweiteZahlAlsDouble = Convert.ToDouble(eingabe.WertAlsString);
+
+            // Operator
+            eingabe.HoleBenutzerEingabe("Bitte gib an, welche Operation du durchführen möchtest: +  -  *  /  sind möglich");
+            operation = eingabe.WertAlsString;
 
             // Division durch 0 ausschließen
             if (operation == "/" && zweiteZahlAlsDouble == 0)
             {
-                // Fehlermeldung ausgeben
-                GebeEingabeFehlerAus("für 2. Zahl", "Division durch 0 ist nicht möglich");
+                // Fehlermeldung ausgeben mit Übergabe der Fehlerquelle und der Fehlermeldung
+                eingabefehler.GebeEingabeFehlerAus("für 2. Zahl", "Division durch 0 ist nicht möglich");
             }
             else
             {
@@ -50,57 +62,12 @@ namespace TaschenrechnerConsole
                 model.Berechne(ersteZahlAlsDouble, zweiteZahlAlsDouble, operation);
 
                 // Ausgabe vom Ergebnis aus der Berechnung
-                //Console.WriteLine("Das ist das Resultat {0}", resultat);
-                GebeResultatAus(operation, model.Resultat);
-            }
+                ConsoleView ausgabe = new ConsoleView();
+                ausgabe.GebeResultatAus(operation, model.Resultat);
+            }       
+            
             // Programm beenden
-            HoleBenutzerEingabe("zum Beenden bitte <return> drücken");
-        }
-
-        // Methode zum Einlesen von Zeichenkette
-        static string HoleBenutzerEingabe(string ausgabeText)
-        {
-            Console.WriteLine(ausgabeText);
-            string summand = Console.ReadLine();
-            Console.WriteLine();
-
-            return summand; // return muss immer die letzte Anweisung in einer Methode sein
-        }
- 
-        // Methode Ausgabe Resultat
-        static void GebeResultatAus(string operation, double resultat)
-        {
-            switch (operation)
-            {
-                case "+":
-                    Console.WriteLine("Die Summe beträgt: {0}", resultat);
-                    break;
-
-                case "-":
-                    Console.WriteLine("Die Differenz beträgt: {0}", resultat);
-                    break;
-
-                case "*":
-                    Console.WriteLine("Das Produkt beträgt: {0}", resultat);
-                    break;
-
-                case "/":
-                    Console.WriteLine("Der Quotient beträgt: {0}", resultat);
-                    break;
-
-                default:
-                    // Eingabefehler wird abgefangen
-                    GebeEingabeFehlerAus("für Operator", operation);
-                    break;
-            }
-            Console.WriteLine();
-        }
-
-        // Methode Ausgabe Eingabefehler
-        static void GebeEingabeFehlerAus(string fehlerquelle, string eingabe)
-        {
-            Console.WriteLine("Dies ist eine falsche Eingabe {0}: {1}", fehlerquelle, eingabe);
-            Console.WriteLine();
+            eingabe.HoleBenutzerEingabe("zum Beenden bitte <Fertig> eingeben");
         }
     }
 }

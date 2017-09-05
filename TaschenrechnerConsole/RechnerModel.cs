@@ -90,7 +90,5 @@ namespace TaschenrechnerConsole
             // oder kürzere Variante
             // return dividend / divisor;
         }
-
-
     }
 }
