@@ -18,14 +18,14 @@ namespace TaschenrechnerConsole
             Resultat = 0;
         }
 
-        // Methode Berechnungen je nach Operator
+        // Methode Berechne je nach Operator
         public void Berechne(double ersteZahlAlsDouble, double zweiteZahlAlsDouble, string operation)
         {
             switch (operation)
             {
                 // Berechnung ausführen Addition
                 // die Werte in ersteZahlAlsDouble und zweiteZahlAlsDouble werden an die Methode Addieren übergeben
-                // nach Ausführen der Methode wird der ermittelte Wert an die Variable resultat übergeben
+                // nach Ausführen der Methode wird der ermittelte Wert an die Eigenschaft Resultat übergeben
                 case "+":
                     Resultat = Addiere(ersteZahlAlsDouble, zweiteZahlAlsDouble);
                     break;
@@ -52,43 +52,31 @@ namespace TaschenrechnerConsole
         }
 
         // Methode Addiere für 2 Summanden
-        private double Addiere(double ersterSummand, double zweiterSummand) // übernimmt die Werte aus ersteZahlAlsDouble und zweiteZahlAlsDouble
+        private double Addiere(double ersterSummand, double zweiterSummand)
         {
             double summe = ersterSummand + zweiterSummand;  // summe ist nur innerhalb der Methode Addieren gültig, könnte auch anders heißen
-            return summe; // summe wird als Ergebnis an summe zurückgegeben
+            return summe; // summe wird als Ergebnis an Eigenschaft Resultat zurückgegeben
 
-            // oder kürzere Variante
+            // oder kürzere Variante:
             // return ersterSummand + zweiterSummand;
         }
 
         // Methode Subtrahiere für 2 Werte
         private double Subtrahiere(double minuend, double subtrahend)
         {
-            double differenz = minuend - subtrahend;
-            return differenz;
-
-            // oder kürzere Variante
-            // return minuedn - subtrahend;
+            return minuend - subtrahend; // Differenz
         }
 
         // Methode Multipliziere für 2 Werte
         private double Multipliziere(double ersterfaktor, double zweiterfaktor)
         {
-            double produkt = ersterfaktor * zweiterfaktor;
-            return produkt;
-
-            // oder kürzere Variante
-            // return ersterfaktor * zweiterfaktor;
+            return ersterfaktor * zweiterfaktor; // Produkt
         }
 
         // Methode Dividiere für 2 Werte
         private double Dividiere(double dividend, double divisor)
         {
-            double quotient = dividend / divisor;
-            return quotient;
-
-            // oder kürzere Variante
-            // return dividend / divisor;
+            return dividend / divisor; // Quotient
         }
     }
 }

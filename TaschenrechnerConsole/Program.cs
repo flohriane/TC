@@ -27,47 +27,45 @@ namespace TaschenrechnerConsole
             double zweiteZahlAlsDouble = 0;
             string operation = "";
 
-            // Objekt eingabefehler anlegen
-            ConsoleView eingabefehler = new ConsoleView();
+            // Objekt model anlegen
+            RechnerModel model = new RechnerModel(); // Aufruf Konstruktor RechnerModel ohne Übergabe
 
-            // Objekt eingabe anlegen
-            ConsoleView eingabe = new ConsoleView();
+            // Objekt view anlegen und
+            ConsoleView view = new ConsoleView(model); // Aufruf Konstruktor ConsoleView mit Übergabe Objekt model ???
 
             // Eingabe der Werte und des Operators zur Berechnung
             // Umwandlung der eingegebenen Variablen von Zeichenkette in Gleitkommazahl
             // TODO: Auslagern der Umwandlung String in Double in separater Methode, wenn Struktur umfangreicher wird
 
             // 1. Wert
-            eingabe.HoleBenutzerEingabe("Bitte gib die 1. Zahl zwischen -10,0 und 100,0 ein");
-            ersteZahlAlsDouble = Convert.ToDouble(eingabe.WertAlsString);
+            view.HoleBenutzerEingabe("Bitte gib die 1. Zahl zwischen -10,0 und 100,0 ein");
+            ersteZahlAlsDouble = Convert.ToDouble(view.WertAlsString);
 
             // 2. Wert
-            eingabe.HoleBenutzerEingabe("Bitte gib die 2. Zahl zwischen -10,0 und 100,0 ein");
-            zweiteZahlAlsDouble = Convert.ToDouble(eingabe.WertAlsString);
+            view.HoleBenutzerEingabe("Bitte gib die 2. Zahl zwischen -10,0 und 100,0 ein");
+            zweiteZahlAlsDouble = Convert.ToDouble(view.WertAlsString);
 
             // Operator
-            eingabe.HoleBenutzerEingabe("Bitte gib an, welche Operation du durchführen möchtest: +  -  *  /  sind möglich");
-            operation = eingabe.WertAlsString;
+            view.HoleBenutzerEingabe("Bitte gib an, welche Operation du durchführen möchtest: +  -  *  /  sind möglich");
+            operation = view.WertAlsString;
 
             // Division durch 0 ausschließen
             if (operation == "/" && zweiteZahlAlsDouble == 0)
             {
                 // Fehlermeldung ausgeben mit Übergabe der Fehlerquelle und der Fehlermeldung
-                eingabefehler.GebeEingabeFehlerAus("für 2. Zahl", "Division durch 0 ist nicht möglich");
+                view.GebeEingabeFehlerAus("für 2. Zahl", "Division durch 0 ist nicht möglich");
             }
             else
             {
                 // Berechnungen durchführen
-                RechnerModel model = new RechnerModel();
                 model.Berechne(ersteZahlAlsDouble, zweiteZahlAlsDouble, operation);
 
                 // Ausgabe vom Ergebnis aus der Berechnung
-                ConsoleView ausgabe = new ConsoleView();
-                ausgabe.GebeResultatAus(operation, model.Resultat);
+                view.GebeResultatAus(operation);
             }       
             
             // Programm beenden
-            eingabe.HoleBenutzerEingabe("zum Beenden bitte <Fertig> eingeben");
+            view.HoleBenutzerEingabe("zum Beenden bitte <Return> drücken");
         }
     }
 }

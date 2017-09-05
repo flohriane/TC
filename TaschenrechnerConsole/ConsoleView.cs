@@ -10,8 +10,25 @@ namespace TaschenrechnerConsole
     class ConsoleView
 
     {
+        private RechnerModel model; // Attribut
+
+        // Konstruktor initialisiert das Attribut this.model mit dem Parameter model aus der Klasse RechnerModel
+        public ConsoleView(RechnerModel model)
+        {
+            this.model = model;
+        }
+
         // Property (Eigenschaft) zu Eingabedaten von Console
-        public string WertAlsString { get; private set; }
+
+        // public string WertAlsString { get; private set; } - Kurzschreibweise
+
+        private string wertAlsString;   // Attribut ist immer private
+
+        public string WertAlsString     // Eigenschaft ist public und kommuniziert nach außen 
+        {
+            get { return wertAlsString; }
+            set { wertAlsString = value; }
+        }
 
         // Konstruktor, der die Eigenschaft WertAlsString initialisiert
         public ConsoleView()
@@ -35,25 +52,25 @@ namespace TaschenrechnerConsole
         }
 
         // Methode zum Ausgeben des Resultats
-        public void GebeResultatAus(string operation, double resultat)
+        public void GebeResultatAus(string operation)
         {
             Console.WriteLine();
             switch (operation)
             {
                 case "+":
-                    Console.WriteLine("Die Summe beträgt: {0}", resultat);
+                    Console.WriteLine("Die Summe beträgt: {0}", model.Resultat);
                     break;
 
                 case "-":
-                    Console.WriteLine("Die Differenz beträgt: {0}", resultat);
+                    Console.WriteLine("Die Differenz beträgt: {0}", model.Resultat);
                     break;
 
                 case "*":
-                    Console.WriteLine("Das Produkt beträgt: {0}", resultat);
+                    Console.WriteLine("Das Produkt beträgt: {0}", model.Resultat);
                     break;
 
                 case "/":
-                    Console.WriteLine("Der Quotient beträgt: {0}", resultat);
+                    Console.WriteLine("Der Quotient beträgt: {0}", model.Resultat);
                     break;
 
                 default:
