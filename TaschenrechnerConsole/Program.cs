@@ -27,7 +27,7 @@ namespace TaschenrechnerConsole
             double zweiteZahlAlsDouble = 0;
             string operation = "";
 
-            // Objekt model anlegen
+            // Objekt (Instanz) model anlegen
             RechnerModel model = new RechnerModel(); // Aufruf Konstruktor RechnerModel ohne Übergabe
 
             // Objekt view anlegen und
@@ -38,15 +38,15 @@ namespace TaschenrechnerConsole
             // TODO: Auslagern der Umwandlung String in Double in separater Methode, wenn Struktur umfangreicher wird
 
             // 1. Wert
-            view.HoleBenutzerEingabe("Bitte gib die 1. Zahl zwischen -10,0 und 100,0 ein");
+            view.HoleBenutzerEingabe("1");
             ersteZahlAlsDouble = Convert.ToDouble(view.WertAlsString);
 
             // 2. Wert
-            view.HoleBenutzerEingabe("Bitte gib die 2. Zahl zwischen -10,0 und 100,0 ein");
+            view.HoleBenutzerEingabe("2");
             zweiteZahlAlsDouble = Convert.ToDouble(view.WertAlsString);
 
             // Operator
-            view.HoleBenutzerEingabe("Bitte gib an, welche Operation du durchführen möchtest: +  -  *  /  sind möglich");
+            view.HoleBenutzerEingabe("3");
             operation = view.WertAlsString;
 
             // Division durch 0 ausschließen
@@ -65,7 +65,7 @@ namespace TaschenrechnerConsole
             }       
             
             // Programm beenden
-            view.HoleBenutzerEingabe("zum Beenden bitte <Return> drücken");
+            view.HoleBenutzerEingabe("4");
         }
     }
 }
