@@ -20,38 +20,31 @@ namespace TaschenrechnerConsole
 
         // Property (Eigenschaft) zu Eingabedaten von Console
 
-        // public string WertAlsString { get; private set; } - Kurzschreibweise
-        private string wertAlsString;   // Attribut ist immer private
+        public string WertAlsString { get; private set; }
 
-        public string WertAlsString     // Eigenschaft ist public und kommuniziert nach außen 
+        //public double WertAlsDouble { get; private set; }
+
+        private double wertAlsDouble;   // Attribut ist immer private
+
+        public double WertAlsDouble     // Eigenschaft ist public und kommuniziert nach außen 
         {
-            get { return wertAlsString; }
-            set { wertAlsString = value; }
+            get { return wertAlsDouble; }
+            set { wertAlsDouble = value; }
         }
 
-        // Konstruktor, der die Eigenschaft WertAlsString initialisiert
+        // Konstruktor, der die Eigenschaften von WertAlsString und WertAlsDouble initialisiert
         public ConsoleView()
         {
+            WertAlsDouble = 0;
             WertAlsString = "default";
         }
 
         // Methode zum Einlesen von Zeichenkette
-        public void HoleBenutzerEingabe(string ausgabeText)
-        {switch (ausgabeText)
+        public void HoleBenutzerEingabeString(string fall)
+        {
+            switch (fall)
             {
-                case "1":
-                    Console.WriteLine("Bitte gib die 1.Zahl zwischen - 10, 0 und 100, 0 ein");
-                    WertAlsString = Console.ReadLine();
-                    Console.WriteLine("");
-                    break;
-
                 case "2":
-                    Console.WriteLine("Bitte gib die 2.Zahl zwischen - 10, 0 und 100, 0 ein");
-                    WertAlsString = Console.ReadLine();
-                    Console.WriteLine("");
-                    break;
-
-                case "3":
                     Console.WriteLine("Bitte gib an, welche Operation du durchführen möchtest: +  -  *  /  sind möglich");
                     WertAlsString = Console.ReadLine();
                     Console.WriteLine("");
@@ -63,7 +56,30 @@ namespace TaschenrechnerConsole
                     break;
 
                 default:
-                    GebeEingabeFehlerAus("unerwarteter Fehler ", "Modul HoleBenutzerEingabe");
+                    WertAlsString = "";
+                    GebeEingabeFehlerAus("unerwarteter Fehler ", "Modul HoleBenutzerEingabeString");
+                    break;
+            }
+        }
+        // Methode zum Einlesen von Zeichenkette und Rückgabe von Double
+        public void HoleBenutzerEingabeDouble(string fall)
+        {switch (fall)
+            {
+                case "1":
+                    Console.WriteLine("Bitte gib die 1.Zahl zwischen - 10, 0 und 100, 0 ein");
+                    WertAlsDouble = Convert.ToDouble(Console.ReadLine());
+                    Console.WriteLine("");
+                    break;
+
+                 case "3":
+                    Console.WriteLine("Bitte gib die 2.Zahl zwischen - 10, 0 und 100, 0 ein");
+                    WertAlsDouble = Convert.ToDouble(Console.ReadLine());
+                    Console.WriteLine("");
+                    break;
+
+                default:
+                    WertAlsDouble = 0;
+                    GebeEingabeFehlerAus("unerwarteter Fehler ", "Modul HoleBenutzerEingabeDouble");
                     break;
             }
         }
