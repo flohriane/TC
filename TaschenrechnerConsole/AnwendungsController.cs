@@ -53,7 +53,7 @@ namespace TaschenrechnerConsole
                 model.Berechne(ersteZahlAlsDouble, zweiteZahlAlsDouble, operation);
 
                 // Ausgabe vom Ergebnis aus der Berechnung
-                view.GebeResultatAus(operation);
+                view.GebeResultatAus();
             }
 
             // Programm beenden

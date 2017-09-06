@@ -92,10 +92,10 @@ namespace TaschenrechnerConsole
         }
 
         // Methode zum Ausgeben des Resultats
-        public void GebeResultatAus(string operation)
+        public void GebeResultatAus()
         {
             Console.WriteLine();
-            switch (operation)
+            switch (model.Operation)
             {
                 case "+":
                     Console.WriteLine("Die Summe beträgt: {0}", model.Resultat);
@@ -115,7 +115,7 @@ namespace TaschenrechnerConsole
 
                 default:
                     // Fehlermeldung ausgeben mit Übergabe der Fehlerquelle und der falschen Eingabe
-                    GebeEingabeFehlerAus("für Operator", operation);
+                    GebeEingabeFehlerAus("für Operator", model.Operation);
                     break;
             }
             Console.WriteLine();

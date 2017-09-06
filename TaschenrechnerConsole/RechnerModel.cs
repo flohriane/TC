@@ -11,16 +11,20 @@ namespace TaschenrechnerConsole
         // Property (Eigenschaft) zur Übergabe des Resultats
         // kann von außen nicht verändert werden - private set
         public double Resultat { get; private set; }
+        public string Operation { get; private set; }
 
-        // Konstruktor, der die Eigenschaft Resultat initialisiert
+        // Konstruktor, der die Eigenschaften Resultat und Operation initialisiert
         public RechnerModel()
         {
             Resultat = 0;
+            Operation = "unbekannt";
         }
 
         // Methode Berechne je nach Operator
         public void Berechne(double ersteZahlAlsDouble, double zweiteZahlAlsDouble, string operation)
         {
+            this.Operation = operation;
+
             switch (operation)
             {
                 // Berechnung ausführen Addition
