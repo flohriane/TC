@@ -28,7 +28,7 @@ namespace TaschenrechnerConsole
             // Division durch 0 ausschließen
             if (model.PruefeDivisionDurchNull(view.ZweiteZahlAlsDouble, view.Operation) == true)
             {
-                view.DivisionDurchNullFehlerAus();
+                view.GebeDivisionDurchNullFehlerAus();
             }
             else
                 {

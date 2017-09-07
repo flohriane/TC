@@ -10,20 +10,9 @@ namespace TaschenrechnerConsole
     class ConsoleView
 
     {
-        private RechnerModel model; // Attribut vom Typ RechnerModel - lokal
-
-        // Konstruktor initialisiert das Attribut this.model mit dem Parameter model aus der Klasse RechnerModel
-        public ConsoleView(RechnerModel model)
-        {
-            this.model = model;  
-        }
-
-        // Property (Eigenschaft) zu Eingabedaten von Console
-
+        // Properties (Eigenschaften) zu Eingabedaten von Console
         public string Operation { get; private set; } // Kurzschreibweise
-
         public double ErsteZahlAlsDouble { get; private set; }
-
         private double zweiteZahlAlsDouble;   // Attribut ist immer private
 
         public double ZweiteZahlAlsDouble     // Eigenschaft ist public und kommuniziert nach außen 
@@ -32,16 +21,20 @@ namespace TaschenrechnerConsole
             set { zweiteZahlAlsDouble = value; }  // volle Schreibweise für evtl. Abfrage gewählt
         }
 
-        // Konstruktor, der die Eigenschaften initialisiert
-        public ConsoleView()
+        // Attribut vom Typ RechnerModel - lokal
+        private RechnerModel model; 
+
+        // Konstruktor initialisiert das Attribut this.model mit dem Parameter model aus der Klasse RechnerModel
+        // und die Properties
+        public ConsoleView(RechnerModel model)
         {
+            this.model = model;
             ErsteZahlAlsDouble = 0;
             ZweiteZahlAlsDouble = 0;
             Operation = "default";
         }
 
         // Methode zum Einlesen sämtlicher Eingaben von der Console
-
         public void HoleBenutzerEingaben ()
         {
             ErsteZahlAlsDouble = HoleBenutzerEingabeDouble("Bitte gib die 1. Zahl zwischen - 10, 0 und 100, 0 ein ");
@@ -54,14 +47,14 @@ namespace TaschenrechnerConsole
             Console.WriteLine("");
         }
 
-        // Methode zum Einlesen von Zahl über Console und Rückgabe von Double
+        // Methode zum Einlesen von Zahl über Console und Rückgabe konvertiert in Double
         private double HoleBenutzerEingabeDouble(string text)
         {
             Console.WriteLine(text);
             return Convert.ToDouble(Console.ReadLine());
         }
 
-        // Methode zum Einlesen von Zeichenkette
+        // Methode zum Einlesen von Zeichenkette über Console
         private string HoleBenutzerEingabeString(string text)
         {
             Console.WriteLine(text);
@@ -76,7 +69,7 @@ namespace TaschenrechnerConsole
         }
 
         // Methode zum Ausgeben der Fehlermeldung DivisionDurchNullFehlerAus
-        public void DivisionDurchNullFehlerAus()
+        public void GebeDivisionDurchNullFehlerAus()
         {
             Console.WriteLine("Division durch 0 ist nicht möglich");
             Console.WriteLine();
