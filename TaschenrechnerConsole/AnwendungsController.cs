@@ -23,6 +23,7 @@ namespace TaschenrechnerConsole
         double ersteZahlAlsDouble = 0;
         double zweiteZahlAlsDouble = 0;
         string operation = "";
+        bool divisionDurchNull = false;
 
         public void Ausfuehren()
 
@@ -42,19 +43,20 @@ namespace TaschenrechnerConsole
             zweiteZahlAlsDouble = view.WertAlsDouble;
 
             // Division durch 0 ausschließen
-            if (operation == "/" && zweiteZahlAlsDouble == 0)
+            divisionDurchNull = model.PruefeDivisionDurchNull(operation, zweiteZahlAlsDouble);
+
+            if ( divisionDurchNull == true)
             {
-                // Fehlermeldung ausgeben mit Übergabe der Fehlerquelle und der Fehlermeldung
-                view.GebeEingabeFehlerAus("für 2. Zahl", "Division durch 0 ist nicht möglich");
+                view.DivisionDurchNullFehlerAus();
             }
             else
-            {
-                // Berechnungen durchführen
-                model.Berechne(ersteZahlAlsDouble, zweiteZahlAlsDouble, operation);
+                {
+                    // Berechnungen durchführen
+                    model.Berechne(ersteZahlAlsDouble, zweiteZahlAlsDouble, operation);
 
-                // Ausgabe vom Ergebnis aus der Berechnung
-                view.GebeResultatAus();
-            }
+                    // Ausgabe vom Ergebnis aus der Berechnung
+                    view.GebeResultatAus();
+                }
 
             // Programm beenden
             view.HoleBenutzerEingabeString("4");

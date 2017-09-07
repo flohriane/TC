@@ -82,5 +82,20 @@ namespace TaschenrechnerConsole
         {
             return dividend / divisor; // Quotient
         }
+
+        // Methode PruefeDivisionDurchNull
+        public bool PruefeDivisionDurchNull(string operation, double zweiteZahlAlsDouble)
+        {
+            this.Operation = operation;
+
+            if (operation == "/" && zweiteZahlAlsDouble == 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

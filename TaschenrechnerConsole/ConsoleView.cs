@@ -91,6 +91,13 @@ namespace TaschenrechnerConsole
             Console.WriteLine();
         }
 
+        // Methode zum Ausgeben der Fehlermeldung DivisionDurchNullFehlerAus
+        public void DivisionDurchNullFehlerAus()
+        {
+            Console.WriteLine("Division durch 0 ist nicht möglich");
+            Console.WriteLine();
+        }
+
         // Methode zum Ausgeben des Resultats
         public void GebeResultatAus()
         {
