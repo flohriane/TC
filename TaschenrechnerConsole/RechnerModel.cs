@@ -84,7 +84,7 @@ namespace TaschenrechnerConsole
         }
 
         // Methode PruefeDivisionDurchNull
-        public bool PruefeDivisionDurchNull(string operation, double zweiteZahlAlsDouble)
+        public bool PruefeDivisionDurchNull(double zweiteZahlAlsDouble, string operation)
         {
             this.Operation = operation;
 

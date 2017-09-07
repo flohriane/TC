@@ -19,48 +19,28 @@ namespace TaschenrechnerConsole
             this.model = model;
         }
 
-        // lokale Variablen anlegen
-        double ersteZahlAlsDouble = 0;
-        double zweiteZahlAlsDouble = 0;
-        string operation = "";
-        bool divisionDurchNull = false;
-
         public void Ausfuehren()
 
         {
-            // Aufruf Methode zur Eingabe der Werte und des Operators zur Berechnung
-
-            // 1. Wert
-            view.HoleBenutzerEingabeDouble("1");
-            ersteZahlAlsDouble = view.WertAlsDouble;
-
-            // Operator
-            view.HoleBenutzerEingabeString("2");
-            operation = view.WertAlsString;
-
-            // 2. Wert
-            view.HoleBenutzerEingabeDouble("3");
-            zweiteZahlAlsDouble = view.WertAlsDouble;
+            // Eingabewerte 1.Zahl, 2.Zahl, Operator holen
+            view.HoleBenutzerEingaben();
 
             // Division durch 0 ausschließen
-            divisionDurchNull = model.PruefeDivisionDurchNull(operation, zweiteZahlAlsDouble);
-
-            if ( divisionDurchNull == true)
+            if (model.PruefeDivisionDurchNull(view.ZweiteZahlAlsDouble, view.Operation) == true)
             {
                 view.DivisionDurchNullFehlerAus();
             }
             else
                 {
                     // Berechnungen durchführen
-                    model.Berechne(ersteZahlAlsDouble, zweiteZahlAlsDouble, operation);
+                    model.Berechne(view.ErsteZahlAlsDouble, view.ZweiteZahlAlsDouble, view.Operation);
 
                     // Ausgabe vom Ergebnis aus der Berechnung
                     view.GebeResultatAus();
                 }
 
             // Programm beenden
-            view.HoleBenutzerEingabeString("4");
-
+            view.BeendeProgramm();
         }
     }
 }

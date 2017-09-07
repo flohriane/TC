@@ -20,68 +20,52 @@ namespace TaschenrechnerConsole
 
         // Property (Eigenschaft) zu Eingabedaten von Console
 
-        public string WertAlsString { get; private set; }
+        public string Operation { get; private set; } // Kurzschreibweise
 
-        //public double WertAlsDouble { get; private set; }
+        public double ErsteZahlAlsDouble { get; private set; }
 
-        private double wertAlsDouble;   // Attribut ist immer private
+        private double zweiteZahlAlsDouble;   // Attribut ist immer private
 
-        public double WertAlsDouble     // Eigenschaft ist public und kommuniziert nach außen 
+        public double ZweiteZahlAlsDouble     // Eigenschaft ist public und kommuniziert nach außen 
         {
-            get { return wertAlsDouble; }
-            set { wertAlsDouble = value; }
+            get { return zweiteZahlAlsDouble; }
+            set { zweiteZahlAlsDouble = value; }  // volle Schreibweise für evtl. Abfrage gewählt
         }
 
-        // Konstruktor, der die Eigenschaften von WertAlsString und WertAlsDouble initialisiert
+        // Konstruktor, der die Eigenschaften initialisiert
         public ConsoleView()
         {
-            WertAlsDouble = 0;
-            WertAlsString = "default";
+            ErsteZahlAlsDouble = 0;
+            ZweiteZahlAlsDouble = 0;
+            Operation = "default";
+        }
+
+        // Methode zum Einlesen sämtlicher Eingaben von der Console
+
+        public void HoleBenutzerEingaben ()
+        {
+            ErsteZahlAlsDouble = HoleBenutzerEingabeDouble("Bitte gib die 1. Zahl zwischen - 10, 0 und 100, 0 ein ");
+            Console.WriteLine("");
+
+            Operation = HoleBenutzerEingabeString("Bitte gib an, welche Operation du durchführen möchtest (+ - * /) ");
+            Console.WriteLine();
+
+            ZweiteZahlAlsDouble = HoleBenutzerEingabeDouble("Bitte gib die 2. Zahl zwischen - 10, 0 und 100, 0 ein ");
+            Console.WriteLine("");
+        }
+
+        // Methode zum Einlesen von Zahl über Console und Rückgabe von Double
+        private double HoleBenutzerEingabeDouble(string text)
+        {
+            Console.WriteLine(text);
+            return Convert.ToDouble(Console.ReadLine());
         }
 
         // Methode zum Einlesen von Zeichenkette
-        public void HoleBenutzerEingabeString(string fall)
+        private string HoleBenutzerEingabeString(string text)
         {
-            switch (fall)
-            {
-                case "2":
-                    Console.WriteLine("Bitte gib an, welche Operation du durchführen möchtest: +  -  *  /  sind möglich");
-                    WertAlsString = Console.ReadLine();
-                    Console.WriteLine("");
-                    break;
-
-                case "4":
-                    Console.WriteLine("zum Beenden bitte <Return> drücken");
-                    Console.ReadKey();
-                    break;
-
-                default:
-                    WertAlsString = "";
-                    GebeEingabeFehlerAus("unerwarteter Fehler ", "Modul HoleBenutzerEingabeString");
-                    break;
-            }
-        }
-        // Methode zum Einlesen von Zeichenkette und Rückgabe von Double
-        public void HoleBenutzerEingabeDouble(string fall)
-        {switch (fall)
-            {
-                case "1":
-                    Console.WriteLine("Bitte gib die 1.Zahl zwischen - 10, 0 und 100, 0 ein");
-                    WertAlsDouble = Convert.ToDouble(Console.ReadLine());
-                    Console.WriteLine("");
-                    break;
-
-                 case "3":
-                    Console.WriteLine("Bitte gib die 2.Zahl zwischen - 10, 0 und 100, 0 ein");
-                    WertAlsDouble = Convert.ToDouble(Console.ReadLine());
-                    Console.WriteLine("");
-                    break;
-
-                default:
-                    WertAlsDouble = 0;
-                    GebeEingabeFehlerAus("unerwarteter Fehler ", "Modul HoleBenutzerEingabeDouble");
-                    break;
-            }
+            Console.WriteLine(text);
+            return Console.ReadLine();
         }
 
         // Methode zum Ausgeben einer Fehlermeldung
@@ -126,6 +110,13 @@ namespace TaschenrechnerConsole
                     break;
             }
             Console.WriteLine();
+        }
+
+        // Methode zum Beenden des Programms
+        public void BeendeProgramm()
+        {
+            Console.WriteLine("Zum Beenden bitte ein Zeichen eingeben");
+            Console.ReadLine();
         }
     }
 }

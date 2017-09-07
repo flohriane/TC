@@ -22,13 +22,9 @@ namespace TaschenrechnerConsole
   
         static void Main(string[] args)
         {
-            // Objekt (Instanz) model anlegen
+            // Objekte (Instanzen) anlegen
             RechnerModel model = new RechnerModel(); // Aufruf Konstruktor RechnerModel ohne Übergabe
-
-            // Objekt view anlegen und
             ConsoleView view = new ConsoleView(model); // Aufruf Konstruktor ConsoleView mit Übergabe Objekt model
-
-            // Objekt controller anlegen
             AnwendungsController controller = new AnwendungsController(view, model); // Aufruf Konstruktor AnwendungsController mit Übergabe der Objekte view und model
 
             controller.Ausfuehren();
