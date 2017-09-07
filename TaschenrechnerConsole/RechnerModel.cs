@@ -8,45 +8,53 @@ namespace TaschenrechnerConsole
 {
     class RechnerModel
     {
-        // Property (Eigenschaft) zur Übergabe des Resultats
-        // kann von außen nicht verändert werden - private set
-        public double Resultat { get; private set; }
-        public string Operation { get; private set; }
+        // Properties (Eigenschaften)
+        // kann von außen nicht verändert werden, wenn private set
+        public double Resultat { get; private set; } // kurze Schreibweise
+        public string Operation { get; set; }
+        public double ErsteZahlAlsDouble { get; set; }
+        private double zweiteZahlAlsDouble;   // Attribut ist immer private
 
-        // Konstruktor, der die Eigenschaften Resultat und Operation initialisiert
+        public double ZweiteZahlAlsDouble     // Eigenschaft ist public und kommuniziert nach außen 
+        {
+            get { return zweiteZahlAlsDouble; }
+            set { zweiteZahlAlsDouble = value; }  // volle Schreibweise für evtl. Abfrage gewählt
+        }
+
+        // Konstruktor, der die Eigenschaften initialisiert
         public RechnerModel()
         {
-            Resultat = 0;
             Operation = "unbekannt";
+            ErsteZahlAlsDouble = 0;
+            ZweiteZahlAlsDouble = 0;
+            Resultat = 0;
         }
 
         // Methode Berechne je nach Operator
-        public void Berechne(double ersteZahlAlsDouble, double zweiteZahlAlsDouble, string operation)
+        public void Berechne()
         {
-            this.Operation = operation;
-
-            switch (operation)
+            switch (Operation)
             {
                 // Berechnung ausführen Addition
                 // die Werte in ersteZahlAlsDouble und zweiteZahlAlsDouble werden an die Methode Addieren übergeben
                 // nach Ausführen der Methode wird der ermittelte Wert an die Eigenschaft Resultat übergeben
                 case "+":
-                    Resultat = Addiere(ersteZahlAlsDouble, zweiteZahlAlsDouble);
+                    Resultat = Addiere(ErsteZahlAlsDouble, ZweiteZahlAlsDouble);
                     break;
 
                 // Berechnung ausführen Subtraktion
                 case "-":
-                    Resultat = Subtrahiere(ersteZahlAlsDouble, zweiteZahlAlsDouble);
+                    Resultat = Subtrahiere(ErsteZahlAlsDouble, ZweiteZahlAlsDouble);
                     break;
 
                 // Berechnung ausführen Multiplikation
                 case "*":
-                    Resultat = Multipliziere(ersteZahlAlsDouble, zweiteZahlAlsDouble);
+                    Resultat = Multipliziere(ErsteZahlAlsDouble, ZweiteZahlAlsDouble);
                     break;
 
                 // Berechnung ausführen Division
                 case "/":
-                    Resultat = Dividiere(ersteZahlAlsDouble, zweiteZahlAlsDouble);
+                    Resultat = Dividiere(ErsteZahlAlsDouble, ZweiteZahlAlsDouble);
                     break;
 
                 default:
@@ -84,11 +92,9 @@ namespace TaschenrechnerConsole
         }
 
         // Methode PruefeDivisionDurchNull
-        public bool PruefeDivisionDurchNull(double zweiteZahlAlsDouble, string operation)
+        public bool PruefeDivisionDurchNull()
         {
-            this.Operation = operation;
-
-            if (operation == "/" && zweiteZahlAlsDouble == 0)
+            if (Operation == "/" && ZweiteZahlAlsDouble == 0)
             {
                 return true;
             }

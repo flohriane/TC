@@ -20,20 +20,19 @@ namespace TaschenrechnerConsole
         }
 
         public void Ausfuehren()
-
         {
             // Eingabewerte 1.Zahl, 2.Zahl, Operator holen
             view.HoleBenutzerEingaben();
 
             // Division durch 0 ausschließen
-            if (model.PruefeDivisionDurchNull(view.ZweiteZahlAlsDouble, view.Operation) == true)
+            if (model.PruefeDivisionDurchNull() == true)
             {
                 view.GebeDivisionDurchNullFehlerAus();
             }
             else
                 {
                     // Berechnungen durchführen
-                    model.Berechne(view.ErsteZahlAlsDouble, view.ZweiteZahlAlsDouble, view.Operation);
+                    model.Berechne();
 
                     // Ausgabe vom Ergebnis aus der Berechnung
                     view.GebeResultatAus();

@@ -10,17 +10,6 @@ namespace TaschenrechnerConsole
     class ConsoleView
 
     {
-        // Properties (Eigenschaften) zu Eingabedaten von Console
-        public string Operation { get; private set; } // Kurzschreibweise
-        public double ErsteZahlAlsDouble { get; private set; }
-        private double zweiteZahlAlsDouble;   // Attribut ist immer private
-
-        public double ZweiteZahlAlsDouble     // Eigenschaft ist public und kommuniziert nach außen 
-        {
-            get { return zweiteZahlAlsDouble; }
-            set { zweiteZahlAlsDouble = value; }  // volle Schreibweise für evtl. Abfrage gewählt
-        }
-
         // Attribut vom Typ RechnerModel - lokal
         private RechnerModel model; 
 
@@ -29,21 +18,18 @@ namespace TaschenrechnerConsole
         public ConsoleView(RechnerModel model)
         {
             this.model = model;
-            ErsteZahlAlsDouble = 0;
-            ZweiteZahlAlsDouble = 0;
-            Operation = "default";
         }
 
         // Methode zum Einlesen sämtlicher Eingaben von der Console
         public void HoleBenutzerEingaben ()
         {
-            ErsteZahlAlsDouble = HoleBenutzerEingabeDouble("Bitte gib die 1. Zahl zwischen - 10, 0 und 100, 0 ein ");
+            model.ErsteZahlAlsDouble = HoleBenutzerEingabeDouble("Bitte gib die 1. Zahl ein ");
             Console.WriteLine("");
 
-            Operation = HoleBenutzerEingabeString("Bitte gib an, welche Operation du durchführen möchtest (+ - * /) ");
+            model.Operation = HoleBenutzerEingabeString("Bitte gib an, welche Operation du durchführen möchtest (+ - * /) ");
             Console.WriteLine();
 
-            ZweiteZahlAlsDouble = HoleBenutzerEingabeDouble("Bitte gib die 2. Zahl zwischen - 10, 0 und 100, 0 ein ");
+            model.ZweiteZahlAlsDouble = HoleBenutzerEingabeDouble("Bitte gib die 2. Zahl ein ");
             Console.WriteLine("");
         }
 
