@@ -8,6 +8,7 @@ namespace TaschenrechnerConsole
 {
     class RechnerModel
     {
+        // Prinzip "tell - don't ask" verwenden, also wenn möglich return verwenden anstatt Eigenschaften
         // Properties (Eigenschaften)
         // kann von außen nicht verändert werden, wenn private set
         public double Resultat { get; private set; } // kurze Schreibweise
