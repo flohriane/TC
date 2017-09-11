@@ -19,6 +19,8 @@ namespace TaschenrechnerConsole
         // Methode implementieren (Anweisungen in den Methodenrumpf schreiben)
         // Commit in Git
 
+        // teste Synchronisation mit GitHub
+
   
         static void Main(string[] args)
         {
