@@ -19,16 +19,15 @@ namespace TaschenrechnerConsole
         // Methode implementieren (Anweisungen in den Methodenrumpf schreiben)
         // Commit in Git
 
-        // teste Synchronisation mit GitHub
-
   
         static void Main(string[] args)
         {
-            // Objekte (Instanzen) anlegen
-            RechnerModel model = new RechnerModel(); // Aufruf Konstruktor RechnerModel ohne Übergabe
-            ConsoleView view = new ConsoleView(model); // Aufruf Konstruktor ConsoleView mit Übergabe Objekt model
-            AnwendungsController controller = new AnwendungsController(view, model); // Aufruf Konstruktor AnwendungsController mit Übergabe der Objekte view und model
+            // Objekte (Instanzen) erstellen nach MVC Pattern
+            RechnerModel model = new RechnerModel(); // Standard Konstruktor RechnerModel ohne Übergabe
+            ConsoleView view = new ConsoleView(model); // Standard Konstruktor ConsoleView mit Übergabe Objekt model
+            AnwendungsController controller = new AnwendungsController(view, model); // Standard Konstruktor AnwendungsController mit Übergabe der Objekte view und model
 
+            // Ablauf des Progarmms starten
             controller.Ausfuehren();
         }
     }

@@ -6,7 +6,7 @@ Titel: Beenden
 Story: Als Benutzer möchte ich "Fertig" anstelle einer weiteren Zahl eingeben, um den Taschenrechner zu beenden
 Akzeptanzkriterien:
 	* Taschenrechner wird beendet, sobal "Fertig" (in genau dieser Schreibweise) eingegeben wird
-	* es gibt einen entsprechenden Hinweis, dass der Benutzer weiß mit welchem Kommando er der Taschenrechner beenden kann
+	* es gibt einen entsprechenden Hinweis, dass der Benutzer weiß mit welchem Kommando er den Taschenrechner beenden kann
 Status: 
 	* offen
 

@@ -21,8 +21,8 @@ namespace TaschenrechnerConsole
 
         public void Ausfuehren()
         {
-            // Eingabewerte 1.Zahl, 2.Zahl, Operator holen
-            view.HoleBenutzerEingaben();
+                // Eingabewerte 1.Zahl, 2.Zahl, Operator holen
+                view.HoleErsteEingabenVomBenutzer();
 
             // Division durch 0 ausschließen
             if (model.PruefeDivisionDurchNull() == true)
@@ -30,13 +30,23 @@ namespace TaschenrechnerConsole
                 view.GebeDivisionDurchNullFehlerAus();
             }
             else
-                {
-                    // Berechnungen durchführen
-                    model.Berechne();
+            {
+                // Berechnungen durchführen
+                model.Berechne();
 
-                    // Ausgabe vom Ergebnis aus der Berechnung
-                    view.GebeResultatAus();
-                }
+                // Ausgabe vom Ergebnis aus der Berechnung
+                view.GebeResultatAus();
+            }
+
+            view.HoleFortlaufendeEingabenVomBenutzer();
+
+            while (!view.BenutzerWillBeenden)
+            {
+                model.Berechne();
+                view.GebeResultatAus();
+                view.HoleFortlaufendeEingabenVomBenutzer();
+            }
+
 
             // Programm beenden
             view.BeendeProgramm();

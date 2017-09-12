@@ -31,7 +31,7 @@ namespace TaschenrechnerConsole
             Resultat = 0;
         }
 
-        // Methode Berechne je nach Operator
+        // öffetnliche Methode Berechne je nach Operator
         public void Berechne()
         {
             switch (Operation)
@@ -64,7 +64,8 @@ namespace TaschenrechnerConsole
             }
         }
 
-        // Methode Addiere für 2 Summanden
+        // private Klassen-Methoden für die Rechenarten
+        // Addieren
         private double Addiere(double ersterSummand, double zweiterSummand)
         {
             double summe = ersterSummand + zweiterSummand;  // summe ist nur innerhalb der Methode Addieren gültig, könnte auch anders heißen
@@ -74,25 +75,25 @@ namespace TaschenrechnerConsole
             // return ersterSummand + zweiterSummand;
         }
 
-        // Methode Subtrahiere für 2 Werte
+        // Subtrahieren
         private double Subtrahiere(double minuend, double subtrahend)
         {
             return minuend - subtrahend; // Differenz
         }
 
-        // Methode Multipliziere für 2 Werte
+        // Multiplizieren
         private double Multipliziere(double ersterfaktor, double zweiterfaktor)
         {
             return ersterfaktor * zweiterfaktor; // Produkt
         }
 
-        // Methode Dividiere für 2 Werte
+        // Dividieren
         private double Dividiere(double dividend, double divisor)
         {
             return dividend / divisor; // Quotient
         }
 
-        // Methode PruefeDivisionDurchNull
+        // öffentliche Methode PruefeDivisionDurchNull
         public bool PruefeDivisionDurchNull()
         {
             if (Operation == "/" && ZweiteZahlAlsDouble == 0)

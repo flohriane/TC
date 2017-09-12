@@ -17,27 +17,46 @@ namespace TaschenrechnerConsole
         // und die Properties
         public ConsoleView(RechnerModel model)
         {
-            this.model = model;
+            this.model = model; // this.Attribut = Parameter
+            BenutzerWillBeenden = false;
         }
 
-        // Methode zum Einlesen sämtlicher Eingaben von der Console
-        public void HoleBenutzerEingaben ()
+        public bool BenutzerWillBeenden { get; private set; }
+
+        // Methode zum Einlesen der ersten Eingaben von der Console
+        public void HoleErsteEingabenVomBenutzer()
         {
-            model.ErsteZahlAlsDouble = HoleBenutzerEingabeDouble("Bitte gib die 1. Zahl ein ");
+            model.ErsteZahlAlsDouble = HoleBenutzerEingabeDouble("Bitte gib die 1. Zahl ein");
             Console.WriteLine("");
 
             model.Operation = HoleBenutzerEingabeString("Bitte gib an, welche Operation du durchführen möchtest (+ - * /) ");
             Console.WriteLine();
 
-            model.ZweiteZahlAlsDouble = HoleBenutzerEingabeDouble("Bitte gib die 2. Zahl ein ");
+            model.ZweiteZahlAlsDouble = HoleBenutzerEingabeDouble("Bitte gib die 2. Zahl ein");
             Console.WriteLine("");
+        }
+        // Methode zum Einlesen der fortlaufenden Eingaben von der Console
+        public void HoleFortlaufendeEingabenVomBenutzer ()
+        {
+            string eingabe = HoleBenutzerEingabeString("Bitte gib eine weitere Zahl zur Berechnung ein oder 'FERTIG' zum Beenden");
+
+            if (eingabe.ToUpper() == "FERTIG")
+            {
+                BenutzerWillBeenden = true;
+            }
+            else
+            {
+                model.ErsteZahlAlsDouble = model.Resultat;
+                model.ZweiteZahlAlsDouble = Convert.ToDouble(eingabe);
+            }
         }
 
         // Methode zum Einlesen von Zahl über Console und Rückgabe konvertiert in Double
         private double HoleBenutzerEingabeDouble(string text)
         {
             Console.WriteLine(text);
-            return Convert.ToDouble(Console.ReadLine());
+            string zahl = Console.ReadLine();
+            return Convert.ToDouble(zahl);
         }
 
         // Methode zum Einlesen von Zeichenkette über Console
