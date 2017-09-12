@@ -22,6 +22,8 @@ namespace TaschenrechnerConsole
             set { zweiteZahlAlsDouble = value; }  // volle Schreibweise für evtl. Abfrage gewählt
         }
 
+        public bool FehlerDivisionDurchNull { get; set; }
+
         // Konstruktor, der die Eigenschaften initialisiert
         public RechnerModel()
         {
@@ -29,9 +31,10 @@ namespace TaschenrechnerConsole
             ErsteZahlAlsDouble = 0;
             ZweiteZahlAlsDouble = 0;
             Resultat = 0;
+            FehlerDivisionDurchNull = false;
         }
 
-        // öffetnliche Methode Berechne je nach Operator
+        // öffentliche Methode Berechne je nach Operator
         public void Berechne()
         {
             switch (Operation)
@@ -94,15 +97,15 @@ namespace TaschenrechnerConsole
         }
 
         // öffentliche Methode PruefeDivisionDurchNull
-        public bool PruefeDivisionDurchNull()
+        public void PruefeDivisionDurchNull()
         {
             if (Operation == "/" && ZweiteZahlAlsDouble == 0)
             {
-                return true;
+                FehlerDivisionDurchNull = true;
             }
             else
             {
-                return false;
+                FehlerDivisionDurchNull = false;
             }
         }
     }

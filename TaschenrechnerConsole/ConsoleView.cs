@@ -78,6 +78,7 @@ namespace TaschenrechnerConsole
         {
             Console.WriteLine("Division durch 0 ist nicht möglich");
             Console.WriteLine();
+            BenutzerWillBeenden = true; // Programm nach Fehler beenden, sonst Endlosschleife
         }
 
         // Methode zum Ausgeben des Resultats

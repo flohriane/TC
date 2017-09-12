@@ -21,13 +21,28 @@ namespace TaschenrechnerConsole
 
         public void Ausfuehren()
         {
-                // Eingabewerte 1.Zahl, 2.Zahl, Operator holen
-                view.HoleErsteEingabenVomBenutzer();
+            // anfängliche Eingabewerte 1.Zahl, 2.Zahl, Operator holen
+            view.HoleErsteEingabenVomBenutzer();
+            FuehreImmerGleicheSchritteDurch();
 
+        while (!view.BenutzerWillBeenden)
+        {
+            FuehreImmerGleicheSchritteDurch();
+        }
+
+            // Programm beenden
+            view.BeendeProgramm();
+        }
+
+        // Schritte unabhängig von 1. oder nachfolgender Eingabe
+        public void FuehreImmerGleicheSchritteDurch()
+        {
             // Division durch 0 ausschließen
-            if (model.PruefeDivisionDurchNull() == true)
+            model.PruefeDivisionDurchNull();
+
+            if (model.FehlerDivisionDurchNull)
             {
-                view.GebeDivisionDurchNullFehlerAus();
+                view.GebeDivisionDurchNullFehlerAus(); // view.BenutzerWillBeenden wird auf 'true' gesetzt
             }
             else
             {
@@ -36,20 +51,10 @@ namespace TaschenrechnerConsole
 
                 // Ausgabe vom Ergebnis aus der Berechnung
                 view.GebeResultatAus();
-            }
 
-            view.HoleFortlaufendeEingabenVomBenutzer();
-
-            while (!view.BenutzerWillBeenden)
-            {
-                model.Berechne();
-                view.GebeResultatAus();
+                // Nächsten Wert holen oder 'FERTIG' für Beenden
                 view.HoleFortlaufendeEingabenVomBenutzer();
             }
-
-
-            // Programm beenden
-            view.BeendeProgramm();
         }
     }
 }
