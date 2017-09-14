@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -54,9 +55,24 @@ namespace TaschenrechnerConsole
         // Methode zum Einlesen von Zahl über Console und Rückgabe konvertiert in Double
         private double HoleBenutzerEingabeDouble(string text)
         {
+            string eingabe;
+            double zahl;
             Console.WriteLine(text);
-            string zahl = Console.ReadLine();
-            return Convert.ToDouble(zahl);
+
+            eingabe = Console.ReadLine();
+            while (!Double.TryParse(eingabe, out zahl))
+            {
+                Console.WriteLine("Du musst eine gültige Gleitkommazahl eingeben");
+                Console.WriteLine("Neben den Ziffern 0-9 sind lediglich die folgenden Sonderzeichen erlaubt: ,.-");
+                Console.WriteLine("Dabei muss das - als erstes Zeichen vor einer Ziffer gesetzt werden");
+                Console.WriteLine("Der . fungiert nur als Trennzeichen an Tausenderstellen");
+                Console.WriteLine("Das , ist das Trennzeichen für die Tausenderstellen");
+                Console.WriteLine("Alle drei Sonderzeichen sind otpional");
+                Console.WriteLine();
+                Console.WriteLine("Bitte gib erneut eine Zahl für die Berechnung ein: ");
+                eingabe = Console.ReadLine();
+            }
+            return zahl;
         }
 
         // Methode zum Einlesen von Zeichenkette über Console
