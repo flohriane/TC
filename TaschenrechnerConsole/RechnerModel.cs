@@ -99,7 +99,7 @@ namespace TaschenrechnerConsole
         // öffentliche Methode PruefeDivisionDurchNull
         public void PruefeDivisionDurchNull()
         {
-            if (Operation == "/" && ZweiteZahlAlsDouble == 0)
+            if (Operation == "/" &&  ZweiteZahlAlsDouble == 0)
             {
                 FehlerDivisionDurchNull = true;
             }

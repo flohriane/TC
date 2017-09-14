@@ -42,7 +42,7 @@ namespace TaschenrechnerConsole
 
             if (model.FehlerDivisionDurchNull)
             {
-                view.GebeDivisionDurchNullFehlerAus(); // view.BenutzerWillBeenden wird auf 'true' gesetzt
+                view.GibDivisionDurchNullFehlerAus(); // view.BenutzerWillBeenden wird auf 'true' gesetzt
             }
             else
             {
@@ -50,7 +50,7 @@ namespace TaschenrechnerConsole
                 model.Berechne();
 
                 // Ausgabe vom Ergebnis aus der Berechnung
-                view.GebeResultatAus();
+                view.GibResultatAus();
 
                 // Nächsten Wert holen oder 'FERTIG' für Beenden
                 view.HoleFortlaufendeEingabenVomBenutzer();

@@ -2,6 +2,14 @@ User Stories Taschenrechner
 
 User Story Vorlage: Als <Rolle/ Anwendertyp> möchte ich <Ziel/ Wunsch/ Funktion>, um <Nutzen>
 
+Titel: Validieren der Eingabe
+Story: Als Benutzer möchte ich sofort erkennen, ob meine Eingabe gültig ist, um den Taschenrechner schnell und einfach bedienen zu können
+Akzeptanzkriterien:
+	* Fehleranzeige wird nach <return> angezeigt
+	* Der Benutzer bekommt einen Hinweis, wie der Zahlen, Operationen und Kommandos richtig eingeben kann
+Status: 
+	* offen
+
 Titel: Beenden
 Story: Als Benutzer möchte ich "Fertig" anstelle einer weiteren Zahl eingeben, um den Taschenrechner zu beenden
 Akzeptanzkriterien:
@@ -35,6 +43,7 @@ Akzeptanzkriterien:
 	* Das Single Level of Abstraction wird eingehalten oder eine Abweichung ist begründet und dokumentiert
 Status:
 	* umgesetzt
+	* getestet
 	* erledigt
 
 Titel: Dividieren
@@ -44,6 +53,7 @@ Akzeptanzkriterien:
 	* Divsion durch 0 muss verhindert werden
 Status:
 	* umgesetzt
+	* getestet
 	* erledigt
 
 Titel: Multiplizieren
@@ -52,6 +62,7 @@ Akzeptanzkriterien:
 	* Gleitkommazahlen zwischen -10 und 100 können multipliziert werden
 Status:
 	* umgesetzt
+	* getestet
 	* erledigt
 
 Titel: Subtrahieren
@@ -59,7 +70,9 @@ Story: als Benuter möchte ich 2 Zahlen eingeben, um deren Differenz berechnen zu
 Akzeptanzkriterien: 
 	* Gleitkommazahlen zwischen -10.0 und 100.0 können addiert werden
 Status:
-	* offen
+	* umgesetzt
+	* getestet
+	* erledigt
 
 Titel: Addieren
 Story: als Benuter möchte ich 2 Zahlen eingeben, um deren Summe berechnen zu lassen

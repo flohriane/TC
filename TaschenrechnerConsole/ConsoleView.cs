@@ -74,7 +74,7 @@ namespace TaschenrechnerConsole
         }
 
         // Methode zum Ausgeben der Fehlermeldung DivisionDurchNullFehlerAus
-        public void GebeDivisionDurchNullFehlerAus()
+        public void GibDivisionDurchNullFehlerAus()
         {
             Console.WriteLine("Division durch 0 ist nicht möglich");
             Console.WriteLine();
@@ -82,7 +82,7 @@ namespace TaschenrechnerConsole
         }
 
         // Methode zum Ausgeben des Resultats
-        public void GebeResultatAus()
+        public void GibResultatAus()
         {
             Console.WriteLine();
             switch (model.Operation)
@@ -114,8 +114,8 @@ namespace TaschenrechnerConsole
         // Methode zum Beenden des Programms
         public void BeendeProgramm()
         {
-            Console.WriteLine("Zum Beenden bitte ein Zeichen eingeben");
-            Console.ReadLine();
+            Console.WriteLine("Zum Beenden bitte return drücken");
+            Console.ReadKey();
         }
     }
 }
