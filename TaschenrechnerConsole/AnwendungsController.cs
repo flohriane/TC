@@ -36,7 +36,7 @@ namespace TaschenrechnerConsole
 
         // Schritte unabhängig von 1. oder nachfolgender Eingabe
         public void FuehreImmerGleicheSchritteDurch()
-        {            
+        {
             // Division durch 0 ausschließen
             model.PruefeDivisionDurchNull();
 

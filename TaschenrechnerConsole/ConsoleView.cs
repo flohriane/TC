@@ -12,7 +12,7 @@ namespace TaschenrechnerConsole
 
     {
         // Attribut vom Typ RechnerModel - lokal
-        private RechnerModel model; 
+        private RechnerModel model;
 
         // Konstruktor initialisiert das Attribut this.model mit dem Parameter model aus der Klasse RechnerModel
         // und die Properties
@@ -46,9 +46,21 @@ namespace TaschenrechnerConsole
                 BenutzerWillBeenden = true;
             }
             else
+
             {
+                double zahl = Convert.ToDouble(eingabe);
+                bool fehlerGrenzwert = model.PruefeZahlAufGrenzwerte(zahl);
+
+                while (fehlerGrenzwert == true)
+                {
+                    GibGrenzwertFehlerAus();
+                    Console.WriteLine("Bitte gib erneut eine Zahl für die Berechnung ein: ");
+                    eingabe = Console.ReadLine();
+                    zahl = Convert.ToDouble(eingabe);
+                    fehlerGrenzwert = model.PruefeZahlAufGrenzwerte(zahl);
+                }
                 model.ErsteZahlAlsDouble = model.Resultat;
-                model.ZweiteZahlAlsDouble = Convert.ToDouble(eingabe);
+                model.ZweiteZahlAlsDouble = zahl;
             }
         }
 
@@ -57,9 +69,24 @@ namespace TaschenrechnerConsole
         {
             string eingabe;
             double zahl;
+            bool fehlerGrenzwert = false;
             Console.WriteLine(text);
 
             eingabe = Console.ReadLine();
+            // Ausnahmen werden sofort bei der Wandlung behandelt
+            // Prüfung auf Grenzwerte -10 bis 100
+            zahl = Convert.ToDouble(eingabe);
+            fehlerGrenzwert = model.PruefeZahlAufGrenzwerte(zahl);
+
+            while (fehlerGrenzwert)
+            {
+                GibGrenzwertFehlerAus();
+                Console.WriteLine("Bitte gib erneut eine Zahl für die Berechnung ein: ");
+                eingabe = Console.ReadLine();
+                zahl = Convert.ToDouble(eingabe);
+                fehlerGrenzwert = model.PruefeZahlAufGrenzwerte(zahl);
+            }
+            fehlerGrenzwert = false;
             while (!Double.TryParse(eingabe, out zahl))
             {
                 Console.WriteLine("Du musst eine gültige Gleitkommazahl eingeben");
@@ -67,7 +94,7 @@ namespace TaschenrechnerConsole
                 Console.WriteLine("Dabei muss das - als erstes Zeichen vor einer Ziffer gesetzt werden");
                 Console.WriteLine("Der . fungiert nur als Trennzeichen an Tausenderstellen");
                 Console.WriteLine("Das , ist das Trennzeichen für die Tausenderstellen");
-                Console.WriteLine("Alle drei Sonderzeichen sind otpional");
+                Console.WriteLine("Alle drei Sonderzeichen sind optional");
                 Console.WriteLine();
                 Console.WriteLine("Bitte gib erneut eine Zahl für die Berechnung ein: ");
                 eingabe = Console.ReadLine();
@@ -95,6 +122,13 @@ namespace TaschenrechnerConsole
             Console.WriteLine("Division durch 0 ist nicht möglich");
             Console.WriteLine();
             BenutzerWillBeenden = true; // Programm nach Fehler beenden, sonst Endlosschleife
+        }
+
+        // Methode zum Ausgeben der Fehlermeldung Gib
+        public void GibGrenzwertFehlerAus()
+        {
+            Console.WriteLine("Der Wert muss zwischen -10 und 100 liegen");
+            Console.WriteLine();
         }
 
         // Methode zum Ausgeben des Resultats

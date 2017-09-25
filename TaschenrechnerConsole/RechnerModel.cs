@@ -6,15 +6,23 @@ using System.Threading.Tasks;
 
 namespace TaschenrechnerConsole
 {
-    class RechnerModel
+    public class RechnerModel
     {
         // Prinzip "tell - don't ask" verwenden, also wenn möglich return verwenden anstatt Eigenschaften
         // Properties (Eigenschaften)
         // kann von außen nicht verändert werden, wenn private set
+        #region Attribute
+
+        private double zweiteZahlAlsDouble;   // Attribut ist immer private
+        #endregion
+
+        #region Eigenschaften
+
+        public bool FehlerDivisionDurchNull { get; set; }
+        public bool FehlerGrenzwert { get; set; }
         public double Resultat { get; private set; } // kurze Schreibweise
         public string Operation { get; set; }
         public double ErsteZahlAlsDouble { get; set; }
-        private double zweiteZahlAlsDouble;   // Attribut ist immer private
 
         public double ZweiteZahlAlsDouble     // Eigenschaft ist public und kommuniziert nach außen 
         {
@@ -22,8 +30,9 @@ namespace TaschenrechnerConsole
             set { zweiteZahlAlsDouble = value; }  // volle Schreibweise für evtl. Abfrage gewählt
         }
 
-        public bool FehlerDivisionDurchNull { get; set; }
+        #endregion
 
+        #region Konstruktoren
         // Konstruktor, der die Eigenschaften initialisiert
         public RechnerModel()
         {
@@ -33,6 +42,9 @@ namespace TaschenrechnerConsole
             Resultat = 0;
             FehlerDivisionDurchNull = false;
         }
+        #endregion
+
+        #region Methoden
 
         // öffentliche Methode Berechne je nach Operator
         public void Berechne()
@@ -99,7 +111,7 @@ namespace TaschenrechnerConsole
         // öffentliche Methode PruefeDivisionDurchNull
         public void PruefeDivisionDurchNull()
         {
-            if (Operation == "/" &&  ZweiteZahlAlsDouble == 0)
+            if (Operation == "/" &&  zweiteZahlAlsDouble == 0)
             {
                 FehlerDivisionDurchNull = true;
             }
@@ -108,5 +120,19 @@ namespace TaschenrechnerConsole
                 FehlerDivisionDurchNull = false;
             }
         }
+
+        public bool PruefeZahlAufGrenzwerte(double zahl)
+        {
+            if (zahl < -10.0 || zahl > 100.0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        #endregion
     }
 }
