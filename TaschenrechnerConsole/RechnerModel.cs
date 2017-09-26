@@ -18,8 +18,6 @@ namespace TaschenrechnerConsole
 
         #region Eigenschaften
 
-        public bool FehlerDivisionDurchNull { get; set; }
-        public bool FehlerGrenzwert { get; set; }
         public double Resultat { get; private set; } // kurze Schreibweise
         public string Operation { get; set; }
         public double ErsteZahlAlsDouble { get; set; }
@@ -40,7 +38,6 @@ namespace TaschenrechnerConsole
             ErsteZahlAlsDouble = 0;
             ZweiteZahlAlsDouble = 0;
             Resultat = 0;
-            FehlerDivisionDurchNull = false;
         }
         #endregion
 
@@ -109,18 +106,19 @@ namespace TaschenrechnerConsole
         }
 
         // öffentliche Methode PruefeDivisionDurchNull
-        public void PruefeDivisionDurchNull()
+        public bool PruefeDivisionDurchNull(double zahl)
         {
-            if (Operation == "/" &&  zweiteZahlAlsDouble == 0)
+            if (Operation == "/" &&  zahl == 0)
             {
-                FehlerDivisionDurchNull = true;
+                return true;
             }
             else
             {
-                FehlerDivisionDurchNull = false;
+                return false;
             }
         }
 
+        // öffentliche Methode PruefeZahlAufGrenzwert
         public bool PruefeZahlAufGrenzwerte(double zahl)
         {
             if (zahl < -10.0 || zahl > 100.0)
@@ -130,6 +128,30 @@ namespace TaschenrechnerConsole
             else
             {
                 return false;
+            }
+        }
+
+        // öffentliche Methode PruefeOperator
+        public bool PruefeOperator(string falscheEingabe)
+        {
+            Console.WriteLine("Das ist der Operator: "+Operation);
+            Console.WriteLine("Das ist die falscheEingabe: "+falscheEingabe);
+            switch (falscheEingabe)
+            {
+                case "+":
+                    return false;
+
+                case "-":
+                    return false;
+
+                case "*":
+                    return false;
+
+                case "/":
+                    return false;
+
+                default:
+                    return true;
             }
         }
 

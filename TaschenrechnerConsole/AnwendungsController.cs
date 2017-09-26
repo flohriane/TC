@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TaschenrechnerConsole
+﻿namespace TaschenrechnerConsole
 {
     class AnwendungsController
     {
@@ -26,9 +20,9 @@ namespace TaschenrechnerConsole
             FuehreImmerGleicheSchritteDurch();
 
         while (!view.BenutzerWillBeenden)
-        {
-            FuehreImmerGleicheSchritteDurch();
-        }
+            {
+                FuehreImmerGleicheSchritteDurch();
+            }
 
             // Programm beenden
             view.BeendeProgramm();
@@ -37,15 +31,6 @@ namespace TaschenrechnerConsole
         // Schritte unabhängig von 1. oder nachfolgender Eingabe
         public void FuehreImmerGleicheSchritteDurch()
         {
-            // Division durch 0 ausschließen
-            model.PruefeDivisionDurchNull();
-
-            if (model.FehlerDivisionDurchNull)
-            {
-                view.GibDivisionDurchNullFehlerAus(); // view.BenutzerWillBeenden wird auf 'true' gesetzt
-            }
-            else
-            {
                 // Berechnungen durchführen
                 model.Berechne();
 
@@ -54,7 +39,6 @@ namespace TaschenrechnerConsole
 
                 // Nächsten Wert holen oder 'FERTIG' für Beenden
                 view.HoleFortlaufendeEingabenVomBenutzer();
-            }
         }
     }
 }
