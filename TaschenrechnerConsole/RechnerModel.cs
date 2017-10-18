@@ -134,8 +134,6 @@ namespace TaschenrechnerConsole
         // öffentliche Methode PruefeOperator
         public bool PruefeOperator(string falscheEingabe)
         {
-            Console.WriteLine("Das ist der Operator: "+Operation);
-            Console.WriteLine("Das ist die falscheEingabe: "+falscheEingabe);
             switch (falscheEingabe)
             {
                 case "+":
