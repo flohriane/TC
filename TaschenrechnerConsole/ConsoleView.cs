@@ -10,10 +10,13 @@ namespace TaschenrechnerConsole
         // Attribut vom Typ RechnerModel - lokal
         private RechnerModel model;
 
-       // Variablen für alle Methoden
+        // Variable fehlereingabe wird bei allen Prüfungen auf richtige Eingabewerte gesetzt
         private bool fehlerEingabe = false;
+        // Variable eingabe ist der Wert, der vom Benutzer eingegben wird
         string eingabe;
+        // Variable zahl ist der Wert, der je nach Eingabe von string eingabe in double oder auf 0 gesetzt wird
         double zahl;
+        // Je nach Fehler wird ein spezieller Text an die Ausgabe-Methode weitergegben
         string fehlertext;
 
         #endregion
@@ -43,8 +46,6 @@ namespace TaschenrechnerConsole
         }
 
         #endregion
-
-        #region Methoden
 
         /// <summary>
         /// Die Methode HoleErsteEingabeVomBenutzer() liest von der Konsole die 
@@ -82,8 +83,6 @@ namespace TaschenrechnerConsole
         /// <returns>zahl als double</returns>
         private void HoleBenutzerEingabeDouble(string text)
         {
-            fehlerEingabe = false;
-
             Console.WriteLine(text);
             eingabe = Console.ReadLine();
 
@@ -147,38 +146,11 @@ namespace TaschenrechnerConsole
 
             HoleBenutzerEingabeString(fehlertext);
 
-            if (eingabe.ToUpper() == "FERTIG")
-            {
-                BenutzerWillBeenden = true;
-                zahl = 0;
-            }
-            else
-            {
-                // Prüfung auf Eingabefehler keine gültige Zahl
-                GueltigeEingabeZahl();
-            }
+            GueltigeEingabeZahlOderFERTIG();
 
-            if (eingabe.ToUpper() == "FERTIG")
-            {
-                BenutzerWillBeenden = true;
-                zahl = 0;
-            }
-            else
-            {
-                // Prüfung auf Grenzwertverletzung 
-                GueltigerBereich();
-            }
+            GueltigerBereichOderFERTIG();
 
-            if (eingabe.ToUpper() == "FERTIG")
-            {
-                BenutzerWillBeenden = true;
-                zahl = 0;
-
-            }
-            else
-            {
-                GueltigOhneDivisionDurchNull();
-            }
+            GueltigOhneDivisionDurchNullOderFERTIG();
 
             // Variable fehlerEingabe wird für die nächste Verwendung zurückgesetzt
             fehlerEingabe = false;
@@ -196,20 +168,8 @@ namespace TaschenrechnerConsole
             Console.WriteLine(fehlertext);
             eingabe = Console.ReadLine();
         }
-
-        public bool PruefeAufGueltigeEingabeZahl(string eingabe)
-        {
-            double zahl;
-            // Prüfung auf Eingabefehler keine gültig Zahl oder "FERTIG"
-            if (!Double.TryParse(eingabe, out zahl))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
+ 
+        #region Methoden zur Überprüfung der Eingaben durch Benutzer
 
         private void GueltigeEingabeZahl()
         {
@@ -227,6 +187,38 @@ namespace TaschenrechnerConsole
             // erst nach Prüfung wird string eingabe in double zahl umgewandelt 
             zahl = Convert.ToDouble(eingabe);
         }
+        private void GueltigeEingabeZahlOderFERTIG()
+        {
+            if (eingabe.ToUpper() == "FERTIG")
+            {
+                BenutzerWillBeenden = true;
+                zahl = 0;
+            }
+            else
+            {
+                // Prüfung auf Eingabefehler keine gültige Zahl
+                fehlerEingabe = PruefeAufGueltigeEingabeZahlOderFERTIG();
+
+                while (fehlerEingabe)
+                {
+                    // Fehlermeldung mit Angabe, welche Eingaben möglich sind
+                    GibSonstigeEingabeFehlerAus();
+
+                    WiederholeEingabeZahl();
+                    fehlerEingabe = PruefeAufGueltigeEingabeZahlOderFERTIG();
+                }
+
+                //erst nach erneuter Prüfung wird string eingabe in double zahl umgewandelt
+                if (BenutzerWillBeenden == false)
+                {
+                    zahl = Convert.ToDouble(eingabe);
+                }
+                else
+                {
+                    zahl = 0;
+                }
+            }
+        }
 
         private void GueltigerBereich()
         {
@@ -241,6 +233,29 @@ namespace TaschenrechnerConsole
                 GueltigeEingabeZahl();
 
                 fehlerEingabe = model.PruefeZahlAufGrenzwerte(zahl);
+            }
+        }
+        private void GueltigerBereichOderFERTIG()
+        {
+            if (eingabe.ToUpper() == "FERTIG")
+            {
+                BenutzerWillBeenden = true;
+                zahl = 0;
+            }
+            else
+            {
+                // Prüfung auf Grenzwerte -10 bis 100
+                fehlerEingabe = model.PruefeZahlAufGrenzwerte(zahl);
+                while (fehlerEingabe)
+                {
+                    GibGrenzwertFehlerAus();
+                    WiederholeEingabeZahl();
+
+                    //erneute Prüfung auf gültige Eingabe nötig
+                    GueltigeEingabeZahlOderFERTIG();
+
+                    fehlerEingabe = model.PruefeZahlAufGrenzwerte(zahl);
+                }
             }
         }
 
@@ -261,6 +276,32 @@ namespace TaschenrechnerConsole
                 fehlerEingabe = model.PruefeDivisionDurchNull(zahl);
             }
         }
+        private void GueltigOhneDivisionDurchNullOderFERTIG()
+        {
+            if (eingabe.ToUpper() == "FERTIG")
+            {
+                BenutzerWillBeenden = true;
+                zahl = 0;
+            }
+            else
+            {
+                fehlerEingabe = model.PruefeDivisionDurchNull(zahl);
+                while (fehlerEingabe)
+                {
+                    GibDivisionDurchNullFehlerAus();
+                    WiederholeEingabeZahl();
+
+                    // Prüfung auf gültige Eingabe nötig
+                    GueltigeEingabeZahlOderFERTIG();
+
+                    // Grenzwerte -10 bis 100
+                    GueltigerBereichOderFERTIG();
+
+                    fehlerEingabe = model.PruefeDivisionDurchNull(zahl);
+                }
+            }
+        }
+
         public bool PruefeAufGueltigeEingabeZahl()
         {
             // Prüfung auf Eingabefehler keine gültig Zahl
@@ -273,7 +314,27 @@ namespace TaschenrechnerConsole
                 return false;
             }
         }
+        public bool PruefeAufGueltigeEingabeZahlOderFERTIG()
+        {
+            // Prüfung auf Eingabefehler keine gültig Zahl oder FERTIG
+            // nach der 1. Berechnung soll der Benutzer jederzeit aus dem Programm aussteigen können
+            if (Double.TryParse(eingabe, out zahl))
+            {
+                return false;
+            }
+            else if (eingabe.ToUpper() == "FERTIG")
+            {
+                BenutzerWillBeenden = true;
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
 
+        #endregion
+        
         #region Methoden für Ausgaben (Meldungen)
         // verschieden Methoden zum Ausgeben von Fehlermeldungen
         public void GibEingabeFehlerAus(string fehlerquelle)
@@ -292,7 +353,6 @@ namespace TaschenrechnerConsole
             Console.WriteLine("Das , ist das Trennzeichen für die Tausenderstellen");
             Console.WriteLine("Alle drei Sonderzeichen sind optional");
             Console.WriteLine();
-            fehlertext="Bitte gib erneut eine Zahl für die Berechnung ein: ";
         }
 
         // Methode zur Ausgabe einer Fehlermeldung bei Grenzwertverletzung
@@ -349,7 +409,6 @@ namespace TaschenrechnerConsole
             Console.WriteLine("Zum Beenden bitte return drücken");
             Console.ReadKey();
         }
-        #endregion
     }
 }
 

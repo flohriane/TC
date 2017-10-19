@@ -25,7 +25,7 @@ namespace TaschenrechnerConsole
         public double ZweiteZahlAlsDouble     // Eigenschaft ist public und kommuniziert nach außen 
         {
             get { return zweiteZahlAlsDouble; }
-            set { zweiteZahlAlsDouble = value; }  // volle Schreibweise für evtl. Abfrage gewählt
+            set { zweiteZahlAlsDouble = value; }  // volle Schreibweise für evtl. Abfragen
         }
 
         #endregion
