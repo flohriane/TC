@@ -278,6 +278,9 @@ namespace TaschenrechnerConsole
         }
         private void GueltigOhneDivisionDurchNullOderFERTIG()
         {
+            // zu Testzwecken
+            Console.WriteLine("!!! GueltigOhneDivisionDurchNullOderFERTIG");
+            //
             if (eingabe.ToUpper() == "FERTIG")
             {
                 BenutzerWillBeenden = true;
@@ -302,7 +305,7 @@ namespace TaschenrechnerConsole
             }
         }
 
-        public bool PruefeAufGueltigeEingabeZahl()
+        private bool PruefeAufGueltigeEingabeZahl()
         {
             // Prüfung auf Eingabefehler keine gültig Zahl
             if (!Double.TryParse(eingabe, out zahl))
@@ -314,7 +317,7 @@ namespace TaschenrechnerConsole
                 return false;
             }
         }
-        public bool PruefeAufGueltigeEingabeZahlOderFERTIG()
+        private bool PruefeAufGueltigeEingabeZahlOderFERTIG()
         {
             // Prüfung auf Eingabefehler keine gültig Zahl oder FERTIG
             // nach der 1. Berechnung soll der Benutzer jederzeit aus dem Programm aussteigen können
@@ -337,14 +340,14 @@ namespace TaschenrechnerConsole
         
         #region Methoden für Ausgaben (Meldungen)
         // verschieden Methoden zum Ausgeben von Fehlermeldungen
-        public void GibEingabeFehlerAus(string fehlerquelle)
+        private void GibEingabeFehlerAus(string fehlerquelle)
         {
             Console.WriteLine("Dies ist eine falsche Eingabe {0}: {1}", fehlerquelle, eingabe);
             Console.WriteLine();
         }
 
         // Methode zur Ausgabe einer Fehlermeldung bei sonstigen Eingabefehlern
-        public void GibSonstigeEingabeFehlerAus()
+        private void GibSonstigeEingabeFehlerAus()
         {
             Console.WriteLine("Du musst eine gültige Gleitkommazahl eingeben");
             Console.WriteLine("Neben den Ziffern 0-9 sind lediglich die folgenden Sonderzeichen erlaubt: ,.-");
@@ -356,14 +359,14 @@ namespace TaschenrechnerConsole
         }
 
         // Methode zur Ausgabe einer Fehlermeldung bei Grenzwertverletzung
-        public void GibGrenzwertFehlerAus()
+        private void GibGrenzwertFehlerAus()
         {
             Console.WriteLine("Die eingegebene Zahl {0} liegt außerhalb des gültigen Bereichs von -10 bis 100", eingabe);
             Console.WriteLine();
         }
 
         // Methode zur Ausgabe einer Fehlermeldung bei Division durch 0
-        public void GibDivisionDurchNullFehlerAus()
+        private void GibDivisionDurchNullFehlerAus()
         {
             Console.WriteLine("Division durch {0} ist nicht möglich", eingabe);
             Console.WriteLine();

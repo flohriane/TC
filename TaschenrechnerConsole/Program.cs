@@ -9,7 +9,7 @@ namespace TaschenrechnerConsole
     class Program
 
     {
-        // Methode definieren in 7 Schritten
+        // Methode definieren in 7 Schritten:
         // Modifizierer definieren
         // Datentyp des Rückabewertes definieren
         // Methodennamen definieren (mit Großbuchstaben beginnen)
@@ -23,9 +23,12 @@ namespace TaschenrechnerConsole
         static void Main(string[] args)
         {
             // Objekte (Instanzen) erstellen nach MVC Pattern
-            RechnerModel model = new RechnerModel(); // Standard Konstruktor RechnerModel ohne Übergabe
-            ConsoleView view = new ConsoleView(model); // Standard Konstruktor ConsoleView mit Übergabe Objekt model
-            AnwendungsController controller = new AnwendungsController(view, model); // Standard Konstruktor AnwendungsController mit Übergabe der Objekte view und model
+            // Standard Konstruktor RechnerModel ohne Übergabe
+            RechnerModel model = new RechnerModel();
+            // Standard Konstruktor ConsoleView mit Übergabe Objekt model
+            ConsoleView view = new ConsoleView(model);
+            // Standard Konstruktor AnwendungsController mit Übergabe der Objekte view und model
+            AnwendungsController controller = new AnwendungsController(view, model); 
 
             // Ablauf des Progarmms starten
             controller.Ausfuehren();
